@@ -10,10 +10,12 @@ import * as React from "react";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import MenuScreen from "../screens/MenuScreen";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
-import { BottomTabParamList, MenuParamList } from "../types";
+import MenuScreen from "../screens/menu/MenuScreen";
+import ItemScreen from "../screens/menu/ItemScreen";
+import LoginScreen from "../screens/account/LoginScreen";
+import RegistrationScreen from "../screens/account/RegistrationScreen";
+
+import { BottomTabParamList, MenuParamList, AccountParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -27,7 +29,17 @@ export default function BottomTabNavigator() {
     >
       <BottomTab.Screen
         name="Menu"
-        component={TabOneNavigator}
+        component={MenuTabNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Account"
+        component={AccountTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
@@ -52,7 +64,7 @@ function TabBarIcon(props: {
 
 const MenuStack = createStackNavigator<MenuParamList>();
 
-function TabOneNavigator() {
+function MenuTabNavigator() {
   return (
     <MenuStack.Navigator>
       <MenuStack.Screen
@@ -60,34 +72,30 @@ function TabOneNavigator() {
         component={MenuScreen}
         options={{ headerShown: true }}
       />
+      <MenuStack.Screen
+        name="ItemScreen"
+        component={ItemScreen}
+        options={{ headerShown: true }}
+      />
     </MenuStack.Navigator>
   );
 }
 
-// const TabOneStack = createStackNavigator<TabOneParamList>();
+const AccountStack = createStackNavigator<AccountParamList>();
 
-// function TabOneNavigator() {
-//   return (
-//     <TabOneStack.Navigator>
-//       <TabOneStack.Screen
-//         name="TabOneScreen"
-//         component={TabOneScreen}
-//         options={{ headerTitle: "Tab One Title" }}
-//       />
-//     </TabOneStack.Navigator>
-//   );
-// }
-
-// const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-// function TabTwoNavigator() {
-//   return (
-//     <TabTwoStack.Navigator>
-//       <TabTwoStack.Screen
-//         name="TabTwoScreen"
-//         component={TabTwoScreen}
-//         options={{ headerTitle: "Tab Two Title" }}
-//       />
-//     </TabTwoStack.Navigator>
-//   );
-// }
+function AccountTabNavigator() {
+  return (
+    <AccountStack.Navigator>
+      <AccountStack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{ headerShown: true }}
+      />
+      <AccountStack.Screen
+        name="RegistrationScreen"
+        component={RegistrationScreen}
+        options={{ headerShown: true }}
+      />
+    </AccountStack.Navigator>
+  );
+}

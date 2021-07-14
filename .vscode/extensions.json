@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "bycedric.vscode-expo",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode"
+  ]
+}

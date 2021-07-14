@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  ScrollView,
-  TouchableHighlight,
-  TouchableNativeFeedback,
-} from "react-native";
+import { FlatList, TouchableHighlight, Pressable } from "react-native";
 import styles from "./MenuCategory.styles.js";
 import Collapsible from "react-native-collapsible";
 
@@ -13,8 +9,8 @@ import { Text, View } from "../../components/Themed";
 
 type MenuCategoryProps = {
   category: {
-    name: string;
-    items: Array<Object>;
+    key: string;
+    data: Array<Object>;
   };
 };
 
@@ -36,19 +32,34 @@ class MenuCategory extends React.Component<
   render() {
     const { category } = this.props;
     const { showItems } = this.state;
+
+    console.log("category.data", category.data);
     return (
       <View style={styles.container}>
-        <TouchableNativeFeedback
-          onPress={() => this.setState({ showItems: !showItems })}
-        >
+        <Pressable onPress={() => this.setState({ showItems: !showItems })}>
           <View style={styles.button}>
             <Text style={styles.name}>{category.name}</Text>
           </View>
-        </TouchableNativeFeedback>
-        <Collapsible collapsed={showItems}>
-          {category.items.map((item) => {
+        </Pressable>
+        <Collapsible collapsed={!showItems}>
+          <FlatList
+            data={category.items}
+            keyExtractor={(item) => item.position.toString()}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={styles.separator} />}
+            renderItem={({ item }) => {
+              console.log("item", item);
+              return (
+                <MenuItemButton
+                  item={item}
+                  navigation={this.props.navigation}
+                />
+              );
+            }}
+          />
+          {/* {category.items.map((item) => {
             return <MenuItemButton item={item} key={item.position} />;
-          })}
+          })} */}
         </Collapsible>
       </View>
     );

@@ -16,6 +16,7 @@ export default StyleSheet.create({
   },
   button: {
     flexDirection: "row",
+    // justifyContent: "flex-start",
   },
   title: {
     fontSize: 17,
