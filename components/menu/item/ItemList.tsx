@@ -13,6 +13,7 @@ import { Text, View } from "../../../components/Themed";
 interface Props {
   options: Array<Object>;
   navigation: Object;
+  onOptionValueChange: (value: any, index: number) => void;
 }
 
 class ItemList extends React.Component<Props> {
@@ -23,7 +24,7 @@ class ItemList extends React.Component<Props> {
         keyExtractor={(item) => item.name}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() => <ItemInfo item={this.props.item} />}
-        renderItem={(optionCategory) => {
+        renderItem={(optionCategory, index) => {
           console.log("optionCategory", optionCategory);
 
           switch (optionCategory.item.selectorType) {
@@ -33,6 +34,7 @@ class ItemList extends React.Component<Props> {
                   item={this.props.item}
                   options={optionCategory.item.options}
                   navigation={this.props.navigation}
+                  onSizeSelected={(value) => this.props.onOptionValueChange(value, index)}
                 />
               );
               break;
