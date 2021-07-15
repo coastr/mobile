@@ -11,11 +11,10 @@ class NumberSelector extends React.Component {
     return (
       <FlatList
         data={this.props.options}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.position.toString()}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() => <Text>{optionCategory.name} </Text>}
         renderItem={(option) => {
-          console.log("!!!!!!option", option);
           return (
             <NumberSelectorOption
               item={item}

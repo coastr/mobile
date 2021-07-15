@@ -33,18 +33,15 @@ class ItemScreen extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    console.log("before did mount");
     try {
       const { data } = await api.menu.getItem(this.props.route.params.itemId);
 
       this.setState({ options: data });
-      console.log("OPTIONS", data);
     } catch (error) {
       console.log(error);
     }
   }
   render() {
-    console.log("ItemScreen this.props", this.props);
     return (
       <View style={styles.container}>
         <ItemList

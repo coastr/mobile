@@ -24,8 +24,6 @@ class ItemList extends React.Component<Props> {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() => <ItemInfo item={this.props.item} />}
         renderItem={(optionCategory) => {
-          console.log("optionCategory", optionCategory);
-
           switch (optionCategory.item.selectorType) {
             case "size":
               return (

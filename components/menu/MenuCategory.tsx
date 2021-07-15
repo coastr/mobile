@@ -33,7 +33,6 @@ class MenuCategory extends React.Component<
     const { category } = this.props;
     const { showItems } = this.state;
 
-    console.log("category.data", category.data);
     return (
       <View style={styles.container}>
         <Pressable onPress={() => this.setState({ showItems: !showItems })}>
@@ -48,7 +47,6 @@ class MenuCategory extends React.Component<
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
             renderItem={({ item }) => {
-              console.log("item", item);
               return (
                 <MenuItemButton
                   item={item}

@@ -23,7 +23,6 @@ class MenuList extends React.Component<Props> {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={RestaurantInfo}
         renderItem={({ item }) => {
-          console.log("item", item);
           return (
             <MenuCategory category={item} navigation={this.props.navigation} />
           );

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import * as GoogleSignIn from "expo-google-sign-in";
+import AccountScreen from "./AccountScreen";
+
+import { user } from "../../firebase";
+// import * as GoogleSignIn from "expo-google-sign-in";
 import styles from "./LoginScreen.styles.js";
 
 export default class LoginScreen extends React.Component {
@@ -17,49 +20,58 @@ export default class LoginScreen extends React.Component {
 
   state = { user: null };
 
-  componentDidMount() {
-    this.initAsync();
+  // componentDidMount() {
+  //   this.initAsync();
+  // }
+
+  // initAsync = async () => {
+  //   await GoogleSignIn.initAsync({
+  //     // You may ommit the clientId when the firebase `googleServicesFile` is configured
+  //     clientId: "<YOUR_IOS_CLIENT_ID>",
+  //   });
+  //   this._syncUserWithStateAsync();
+  // };
+
+  // _syncUserWithStateAsync = async () => {
+  //   const user = await GoogleSignIn.signInSilentlyAsync();
+  //   this.setState({ user });
+  // };
+
+  // signOutAsync = async () => {
+  //   await GoogleSignIn.signOutAsync();
+  //   this.setState({ user: null });
+  // };
+
+  // signInAsync = async () => {
+  //   try {
+  //     await GoogleSignIn.askForPlayServicesAsync();
+  //     const { type, user } = await GoogleSignIn.signInAsync();
+  //     if (type === "success") {
+  //       this._syncUserWithStateAsync();
+  //     }
+  //   } catch ({ message }) {
+  //     alert("login: Error:" + message);
+  //   }
+  // };
+
+  // onGooglePress = () => {
+  //   if (this.state.user) {
+  //     this.signOutAsync();
+  //   } else {
+  //     this.signInAsync();
+  //   }
+  // };
+
+  async componentDidMount() {
+    const signedIn = await user.getCurrentUserIdTokenAsync();
+    this.setState({ signedIn });
   }
 
-  initAsync = async () => {
-    await GoogleSignIn.initAsync({
-      // You may ommit the clientId when the firebase `googleServicesFile` is configured
-      clientId: "<YOUR_IOS_CLIENT_ID>",
-    });
-    this._syncUserWithStateAsync();
-  };
-
-  _syncUserWithStateAsync = async () => {
-    const user = await GoogleSignIn.signInSilentlyAsync();
-    this.setState({ user });
-  };
-
-  signOutAsync = async () => {
-    await GoogleSignIn.signOutAsync();
-    this.setState({ user: null });
-  };
-
-  signInAsync = async () => {
-    try {
-      await GoogleSignIn.askForPlayServicesAsync();
-      const { type, user } = await GoogleSignIn.signInAsync();
-      if (type === "success") {
-        this._syncUserWithStateAsync();
-      }
-    } catch ({ message }) {
-      alert("login: Error:" + message);
-    }
-  };
-
-  onGooglePress = () => {
-    if (this.state.user) {
-      this.signOutAsync();
-    } else {
-      this.signInAsync();
-    }
-  };
-
   render() {
+    if (this.state.signedIn) {
+      return <AccountScreen />;
+    }
+
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView
@@ -96,12 +108,12 @@ export default class LoginScreen extends React.Component {
             <Text style={styles.buttonTitle}>Log in</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.button}
             onPress={() => this.onGooglePress()}
           >
             <Text style={styles.buttonTitle}>Sign in with Google</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <View style={styles.footerView}>
             <Text style={styles.footerText}>
               Don't have an account?{" "}
