@@ -4,6 +4,7 @@ import styles from "./ItemScreen.styles.js";
 import ItemList from "../../components/menu/item/ItemList";
 
 import Collapsible from "react-native-collapsible";
+import AddToOrderButton from "../../components/menu/item/AddToOrderButton";
 
 import { MenuParamList } from "../../types";
 
@@ -48,6 +49,7 @@ class ItemScreen extends React.Component<Props, State> {
           item={this.props.route.params.item}
           options={this.state.options}
         />
+        <AddToOrderButton style={styles.addToOrderButton} />
       </View>
     );
   }

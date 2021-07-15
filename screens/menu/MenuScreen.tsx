@@ -56,17 +56,7 @@ class MenuScreen extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
-        {/* <RestaurantInfo></RestaurantInfo> */}
         <MenuList menu={this.state.menu} navigation={this.props.navigation} />
-        {/* <ScrollView
-          style={styles.scrollContainer}
-          showsVerticalScrollIndicator={false}
-        >
-          {this.state.menu.map((cat) => {
-            console.log("cat", cat);
-            return <MenuCategory category={cat} key={cat.name}></MenuCategory>;
-          })}
-        </ScrollView> */}
       </View>
     );
   }

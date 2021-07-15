@@ -5,12 +5,10 @@ export default StyleSheet.create({
     flex: 1,
     // alignItems: "center",
     justifyContent: "center",
+    height: "100%",
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  scrollContainer: {
-    // paddingBottom: 200,
   },
 });

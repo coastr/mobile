@@ -23,22 +23,22 @@ export default function RegistrationScreen({ navigation }) {
     // const auth = getAuth();
     console.log("email", email);
     console.log("password", password);
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(async (userCredential) => {
-        console.log("userCredential", userCredential);
-        const user = userCredential.user;
-        console.log("user", user);
+    // firebase
+    //   .auth()
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then(async (userCredential) => {
+    //     console.log("userCredential", userCredential);
+    //     const user = userCredential.user;
+    //     console.log("user", user);
 
-        await api.account.createAccount({ name: fullName, email });
-      })
-      .catch((error) => {
-        console.log("error", error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    //     await api.account.createAccount({ name: fullName, email });
+    //   })
+    //   .catch((error) => {
+    //     console.log("error", error);
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // ..
+    //   });
   };
 
   return (

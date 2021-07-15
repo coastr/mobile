@@ -3,7 +3,9 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AccountScreen from "./AccountScreen";
 
-import { user } from "../../firebase";
+import { firebase, user } from "../../firebase";
+import AuthContext from "../../contexts/authContext";
+
 // import * as GoogleSignIn from "expo-google-sign-in";
 import styles from "./LoginScreen.styles.js";
 
@@ -13,10 +15,26 @@ export default class LoginScreen extends React.Component {
   // const [password, setPassword] = useState("");
 
   onFooterLinkPress = () => {
+    r;
     this.props.navigation.navigate("RegistrationScreen");
   };
 
-  // const onLoginPress = () => {};
+  onLoginPress = async () => {
+    // const { signIn } = React.useContext(AuthContext);
+
+    try {
+      await firebase
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(async (userCredential) => {
+          const signedIn = await user.getCurrentUserIdTokenAsync();
+          this.setState({ signedIn });
+        });
+      // signIn({ email: this.state.email, password: this.state.password });
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
 
   state = { user: null };
 
@@ -65,13 +83,10 @@ export default class LoginScreen extends React.Component {
   async componentDidMount() {
     const signedIn = await user.getCurrentUserIdTokenAsync();
     this.setState({ signedIn });
+    console.log("signedIn", signedIn);
   }
 
   render() {
-    if (this.state.signedIn) {
-      return <AccountScreen />;
-    }
-
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView
@@ -103,7 +118,7 @@ export default class LoginScreen extends React.Component {
           />
           <TouchableOpacity
             style={styles.button}
-            // onPress={() => onLoginPress()}
+            onPress={() => this.onLoginPress()}
           >
             <Text style={styles.buttonTitle}>Log in</Text>
           </TouchableOpacity>
