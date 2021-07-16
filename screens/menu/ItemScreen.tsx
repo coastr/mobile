@@ -9,6 +9,7 @@ import styles from "./ItemScreen.styles.js";
 import ItemList from "../../components/menu/item/ItemList";
 
 import Collapsible from "react-native-collapsible";
+import AddToOrderButton from "../../components/menu/item/AddToOrderButton";
 
 import { MenuParamList } from "../../types";
 
@@ -17,7 +18,8 @@ import { Text, View } from "../../components/Themed";
 import api from "../../api";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-interface ItemScreenNavigationProp extends StackNavigationProp<MenuParamList, "ItemScreen"> {}
+interface ItemScreenNavigationProp
+  extends StackNavigationProp<MenuParamList, "ItemScreen"> {}
 
 export interface Props {
   navigation: ItemScreenNavigationProp;
@@ -46,7 +48,6 @@ class ItemScreen extends React.Component<Props, State> {
   };
 
   async componentDidMount() {
-    console.log("before did mount");
     try {
       const values = {};
       const { data } = await api.menu.getItem(this.props.route.params.itemId);
@@ -62,7 +63,6 @@ class ItemScreen extends React.Component<Props, State> {
     }
   }
   render() {
-    console.log("ItemScreen this.props", this.props);
     return (
       <View style={styles.container}>
         <ItemList
@@ -71,6 +71,7 @@ class ItemScreen extends React.Component<Props, State> {
           onOptionValueChange={this.onOptionValueChange}
           values={this.state.values}
         />
+        <AddToOrderButton style={styles.addToOrderButton} />
       </View>
     );
   }

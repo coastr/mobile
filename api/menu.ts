@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { COASTR_URL } from "@env";
 
 axios.defaults.baseURL = `${COASTR_URL}`;
