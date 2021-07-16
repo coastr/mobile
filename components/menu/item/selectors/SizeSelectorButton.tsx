@@ -1,15 +1,11 @@
 import * as React from "react";
 import styles from "./SizeSelectorButton.styles.js";
-import { Pressable } from "react-native";
 import { Text, View } from "../../../../components/Themed";
-import { Button, StyleSheet, TouchableOpacity, Image } from "react-native";
-//import { RadioButtons } from 'react-native-radio-buttons';
-
+import { TouchableOpacity, Image } from "react-native";
 interface Props {
   item: any;
   sizeOption: any;
   onPress: any;
-  index: any;
   selected: boolean;
 }
 
@@ -33,7 +29,7 @@ class SizeSelectorButton extends React.Component<Props> {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={onPress}
+          onPress={() => onPress(sizeOption.option_id)}
           style={[styles.appButtonContainer, selected && styles.appButtonContainerSelected]}
         >
           <Image source={sizeSelectionButtonPhoto[sizeOption.option_name]} />

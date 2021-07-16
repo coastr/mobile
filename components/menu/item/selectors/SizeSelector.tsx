@@ -5,37 +5,43 @@ import SizeSelectorButton from "./SizeSelectorButton";
 import { Text, View } from "../../../../components/Themed";
 
 interface Props {
-  onSizeSelected: (value: any) => void;
+  onSizeSelected: (sizeOption: any, newId: number, oldId: number) => void;
 }
 class SizeSelector extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      currentSizeSelected: 0,
+      currentId: "",
     };
   }
 
-  handleSizeSelected = (sizeOption: string, index: number) => {
-    this.setState({
-      currentSizeSelected: index,
-    });
+  async componentDidMount() {
+    for (const singleOption of this.props.options) {
+      if (this.props.values[singleOption.option_id] === 1) {
+        this.setState({ currentId: singleOption.option_id });
+      }
+    }
+  }
 
-    this.props.onSizeSelected(sizeOption);
+  handleSizeSelected = (id: string) => {
+    const oldId = this.state.currentId;
+    this.setState({
+      currentId: id,
+    });
+    this.props.onSizeSelected(1, id, oldId);
   };
 
   render() {
     const { options, item } = this.props;
-    const { currentSizeSelected } = this.state;
     return (
       <View style={styles.container}>
-        {options.map((sizeOption, index) => (
+        {options.map((sizeOption) => (
           <SizeSelectorButton
-            onPress={() => this.handleSizeSelected(sizeOption, index)}
+            onPress={(id) => this.handleSizeSelected(id)}
             sizeOption={sizeOption}
             item={item}
             key={sizeOption.position.toString()}
-            index={index}
-            selected={index === currentSizeSelected}
+            selected={this.props.values[sizeOption.option_id]}
           />
         ))}
       </View>

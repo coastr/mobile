@@ -13,7 +13,7 @@ import { Text, View } from "../../../components/Themed";
 interface Props {
   options: Array<Object>;
   navigation: Object;
-  onOptionValueChange: (value: any, index: number) => void;
+  onOptionValueChange: (value: any, itemId: string, oldId: string) => void;
 }
 
 class ItemList extends React.Component<Props> {
@@ -32,9 +32,10 @@ class ItemList extends React.Component<Props> {
                   item={this.props.item}
                   options={optionCategory.item.options}
                   navigation={this.props.navigation}
-                  onSizeSelected={(value) =>
-                    this.props.onOptionValueChange(value, index)
+                  onSizeSelected={(value, newId, oldId) =>
+                    this.props.onOptionValueChange(value, newId, oldId)
                   }
+                  values={this.props.values}
                 />
               );
               break;
@@ -46,6 +47,10 @@ class ItemList extends React.Component<Props> {
                   options={optionCategory.item.options}
                   optionCategory={optionCategory.item}
                   navigation={this.props.navigation}
+                  values={this.props.values}
+                  onSizeSelected={(value, newId, oldId) =>
+                    this.props.onOptionValueChange(value, newId, oldId)
+                  }
                 />
               );
               break;
