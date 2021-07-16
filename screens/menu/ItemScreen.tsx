@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import styles from "./ItemScreen.styles.js";
 import ItemList from "../../components/menu/item/ItemList";
+import AddToOrderButton from "../../components/menu/item/AddToOrderButton";
 
 import Collapsible from "react-native-collapsible";
 
@@ -17,7 +18,8 @@ import { Text, View } from "../../components/Themed";
 import api from "../../api";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-interface ItemScreenNavigationProp extends StackNavigationProp<MenuParamList, "ItemScreen"> {}
+interface ItemScreenNavigationProp
+  extends StackNavigationProp<MenuParamList, "ItemScreen"> {}
 
 export interface Props {
   navigation: ItemScreenNavigationProp;
@@ -38,19 +40,29 @@ class ItemScreen extends React.Component<Props, State> {
     };
   }
 
-  onOptionValueChange = (value, newId, oldId) => {
+  handleOptionValueChange = (value, newId, oldId) => {
     const values = this.state.values;
     values[newId] = value;
     if (oldId) values[oldId] = 0;
     this.setState({ values });
+
+    console.log("big values", this.state.values);
+  };
+
+  handleAddToOrder = async () => {
+    api.order.addItemToOrder({
+      restaurantId: "",
+      price: 2.5,
+      menuItemId: this.props.route.params.itemId,
+      numberOfItems: 1,
+      optionValues: this.state.values,
+    });
   };
 
   async componentDidMount() {
-    console.log("before did mount");
     try {
       const values = {};
       const { data } = await api.menu.getItem(this.props.route.params.itemId);
-      console.log("========================================data", data);
       for (const optionCategory of data) {
         for (const singleOption of optionCategory.options) {
           values[singleOption.option_id] = singleOption.default_value;
@@ -62,14 +74,17 @@ class ItemScreen extends React.Component<Props, State> {
     }
   }
   render() {
-    console.log("ItemScreen this.props", this.props);
     return (
       <View style={styles.container}>
         <ItemList
           item={this.props.route.params.item}
           options={this.state.options}
-          onOptionValueChange={this.onOptionValueChange}
+          onOptionValueChange={this.handleOptionValueChange}
           values={this.state.values}
+        />
+        <AddToOrderButton
+          onPress={this.handleAddToOrder}
+          style={styles.addToOrderButton}
         />
       </View>
     );

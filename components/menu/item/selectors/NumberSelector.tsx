@@ -1,6 +1,11 @@
 import * as React from "react";
 import styles from "./NumberSelectorStyles";
-import { ScrollView, FlatList, TouchableNativeFeedback, Pressable } from "react-native";
+import {
+  ScrollView,
+  FlatList,
+  TouchableNativeFeedback,
+  Pressable,
+} from "react-native";
 import Collapsible from "react-native-collapsible";
 
 import { Text, View } from "../../../../components/Themed";
@@ -35,7 +40,7 @@ class NumberSelector extends React.Component {
         <Collapsible collapsed={!showItems}>
           <FlatList
             data={this.props.options}
-            keyExtractor={(item) => item.name}
+            keyExtractor={(item) => item.option_id}
             showsVerticalScrollIndicator={false}
             renderItem={(option) => {
               return (

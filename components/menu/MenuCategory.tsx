@@ -43,6 +43,7 @@ class MenuCategory extends React.Component<
         </Pressable>
         <Collapsible collapsed={!showItems}>
           <FlatList
+            style={styles.list}
             data={category.items}
             keyExtractor={(item) => item.position.toString()}
             showsVerticalScrollIndicator={false}

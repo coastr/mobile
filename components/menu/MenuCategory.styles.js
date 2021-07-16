@@ -2,9 +2,12 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    elevation: 4,
+    // elevation: 4,
     backgroundColor: "#FFFFFF",
     marginTop: 6,
+  },
+  list: {
+    overflow: "visible",
   },
   button: {
     flexDirection: "row",
