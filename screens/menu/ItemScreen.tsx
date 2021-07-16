@@ -50,7 +50,7 @@ class ItemScreen extends React.Component<Props, State> {
   };
 
   handleAddToOrder = async () => {
-    api.order.addItemToOrder({
+    await api.order.addItemToOrder({
       restaurantId: "",
       price: 2.5,
       menuItemId: this.props.route.params.itemId,
