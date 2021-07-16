@@ -1,5 +1,10 @@
 import * as React from "react";
-import { ScrollView, SectionList, TouchableNativeFeedback } from "react-native";
+import {
+  RecyclerViewBackedScrollViewBase,
+  ScrollView,
+  SectionList,
+  TouchableNativeFeedback,
+} from "react-native";
 import styles from "./ItemScreen.styles.js";
 import ItemList from "../../components/menu/item/ItemList";
 
@@ -20,6 +25,7 @@ export interface Props {
 
 interface State {
   options: Array<Object>;
+  values: Object;
 }
 
 class ItemScreen extends React.Component<Props, State> {
@@ -28,32 +34,29 @@ class ItemScreen extends React.Component<Props, State> {
 
     this.state = {
       options: [],
+      values: {},
     };
   }
 
-  onOptionValueChange = (value, index) => {
-    const updatedOptions = this.state.options;
-    updatedOptions[index] = {
-      ...updatedOptions[index],
-      value,
-    };
-    this.setState({ options: updatedOptions });
+  onOptionValueChange = (value, newId, oldId) => {
+    const values = this.state.values;
+    values[newId] = value;
+    if (oldId) values[oldId] = 0;
+    this.setState({ values });
   };
 
   async componentDidMount() {
     console.log("before did mount");
     try {
+      const values = {};
       const { data } = await api.menu.getItem(this.props.route.params.itemId);
-
-      const optionsWithValues = data.map((option) => {
-        return {
-          ...option,
-          value: option ?? "",
-        };
-      });
-
-      this.setState({ options: optionsWithValues });
-      console.log("OPTIONS", data);
+      console.log("========================================data", data);
+      for (const optionCategory of data) {
+        for (const singleOption of optionCategory.options) {
+          values[singleOption.option_id] = singleOption.default_value;
+        }
+      }
+      this.setState({ values, options: data });
     } catch (error) {
       console.log(error);
     }
@@ -66,6 +69,7 @@ class ItemScreen extends React.Component<Props, State> {
           item={this.props.route.params.item}
           options={this.state.options}
           onOptionValueChange={this.onOptionValueChange}
+          values={this.state.values}
         />
       </View>
     );
