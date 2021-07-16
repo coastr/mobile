@@ -10,6 +10,7 @@ import ItemList from "../../components/menu/item/ItemList";
 import AddToOrderButton from "../../components/menu/item/AddToOrderButton";
 
 import Collapsible from "react-native-collapsible";
+import AddToOrderButton from "../../components/menu/item/AddToOrderButton";
 
 import { MenuParamList } from "../../types";
 

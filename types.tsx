@@ -19,6 +19,10 @@ export type MenuParamList = {
 };
 
 export type AccountParamList = {
+  AccountScreen: undefined;
+};
+
+export type LoginParamList = {
   LoginScreen: undefined;
   RegistrationScreen: undefined;
 };
