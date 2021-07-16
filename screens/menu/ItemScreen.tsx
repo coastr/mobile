@@ -33,11 +33,28 @@ class ItemScreen extends React.Component<Props, State> {
     };
   }
 
+  onOptionValueChange = (value, index) => {
+    const updatedOptions = this.state.options;
+    updatedOptions[index] = {
+      ...updatedOptions[index],
+      value,
+    };
+    this.setState({ options: updatedOptions });
+  };
+
   async componentDidMount() {
     try {
       const { data } = await api.menu.getItem(this.props.route.params.itemId);
 
-      this.setState({ options: data });
+      const optionsWithValues = data.map((option) => {
+        return {
+          ...option,
+          value: option ?? "",
+        };
+      });
+
+      this.setState({ options: optionsWithValues });
+      console.log("OPTIONS", data);
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +65,7 @@ class ItemScreen extends React.Component<Props, State> {
         <ItemList
           item={this.props.route.params.item}
           options={this.state.options}
+          onOptionValueChange={this.onOptionValueChange}
         />
         <AddToOrderButton style={styles.addToOrderButton} />
       </View>
