@@ -23,9 +23,9 @@ export default StyleSheet.create({
   },
   actions: {},
   name: {
+    fontFamily: "Poppins-Bold",
     fontSize: 26,
-    fontWeight: "bold",
-    marginLeft: 22,
+    marginLeft: 0,
     color: "#343434",
   },
   separator: {
