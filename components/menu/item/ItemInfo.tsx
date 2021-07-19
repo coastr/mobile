@@ -9,7 +9,7 @@ class ItemInfo extends React.Component {
     const { item } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.name}>{item.item_name}</Text>
+        <Text style={styles.title}>{item.item_name}</Text>
         <Text style={styles.description}>{item.description}</Text>
       </View>
     );

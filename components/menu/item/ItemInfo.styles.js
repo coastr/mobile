@@ -1,20 +1,36 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  name: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginLeft: 22,
-    color: "#343434",
+  container: {
+    alignItems: "flex-start",
+    justifyContent: "center",
+    width: "100%",
     backgroundColor: "#FFFFFF",
+    marginTop: 10,
+    borderRadius: 30,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 17,
+    paddingBottom: 17,
+    elevation: 4,
+  },
+
+  info: {
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    backgroundColor: "#FFFFFF",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
   },
   description: {
-    fontSize: 11,
-    marginLeft: 22,
-    color: "#A3A3A3",
-    backgroundColor: "#FFFFFF",
+    fontSize: 14,
+    color: "#888888",
   },
-  container: {
-    paddingBottom: 17,
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
   },
 });

@@ -1,15 +1,11 @@
 import * as React from "react";
 import styles from "./SizeSelectorButton.styles.js";
-import { Pressable } from "react-native";
 import { Text, View } from "../../../../components/Themed";
-import { Button, StyleSheet, TouchableOpacity, Image } from "react-native";
-//import { RadioButtons } from 'react-native-radio-buttons';
-
+import { TouchableOpacity, Image } from "react-native";
 interface Props {
   item: any;
   sizeOption: any;
   onPress: any;
-  index: any;
   selected: boolean;
 }
 
@@ -33,15 +29,22 @@ class SizeSelectorButton extends React.Component<Props> {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={onPress}
-          style={[styles.appButtonContainer, selected && styles.appButtonContainerSelected]}
+          onPress={() => onPress(sizeOption.option_id)}
+          style={[
+            styles.appButtonContainer,
+            selected && styles.appButtonContainerSelected,
+          ]}
         >
           <Image source={sizeSelectionButtonPhoto[sizeOption.option_name]} />
         </TouchableOpacity>
         <View style={styles.sizeSelectorText}>
           <Text
-            style={[styles.text, styles.textBolded, selected && styles.textSelected]}
-          >{`${sizeOption.option_name[0]}  `}</Text>
+            style={[
+              styles.text,
+              styles.textBolded,
+              selected && styles.textSelected,
+            ]}
+          >{`${sizeOption.option_name[0]} `}</Text>
           <Text style={[styles.text, selected && styles.textSelected]}>{`$${(
             item.price + sizeOption.price_delta
           ).toFixed(2)}`}</Text>

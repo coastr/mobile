@@ -18,12 +18,12 @@ class MenuList extends React.Component<Props> {
   render() {
     return (
       <FlatList
+        style={styles.list}
         data={this.props.menu}
         keyExtractor={(item) => item.name}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={RestaurantInfo}
         renderItem={({ item }) => {
-          console.log("item", item);
           return (
             <MenuCategory category={item} navigation={this.props.navigation} />
           );

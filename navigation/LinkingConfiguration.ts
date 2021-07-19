@@ -17,16 +17,6 @@ export default {
               MenuScreen: "one",
             },
           },
-          // TabOne: {
-          //   screens: {
-          //     TabOneScreen: 'one',
-          //   },
-          // },
-          // TabTwo: {
-          //   screens: {
-          //     TabTwoScreen: 'two',
-          //   },
-          // },
         },
       },
       NotFound: "*",
