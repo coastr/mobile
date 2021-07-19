@@ -9,9 +9,12 @@ class RestaurantInfo extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.info}>
-          <Text>Patriam</Text>
-          <Text>731 Development Drive</Text>
-          <Text>Today: 8:00am - 3:00pm</Text>
+          <Text style={styles.nameText}>Patriam</Text>
+          <Text style={styles.addressText}>731 Development Drive</Text>
+          <View style={styles.hoursContainer}>
+            <Text style={styles.todayText}>Today </Text>
+            <Text style={styles.hoursText}>8:00am - 3:00pm</Text>
+          </View>
         </View>
         <View style={styles.actions}></View>
       </View>

@@ -22,7 +22,6 @@ class MenuItemButton extends React.Component<Props> {
       <Pressable
         style={styles.container}
         onPress={() => {
-          console.log("item press");
           this.props.navigation.navigate("ItemScreen", {
             itemId: item.item_id,
             item,

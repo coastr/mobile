@@ -1,22 +1,21 @@
 import * as React from "react";
-import { ScrollView, SectionList, TouchableNativeFeedback } from "react-native";
 import styles from "./MenuScreen.styles.js";
+import { connect } from "react-redux";
 
-import RestaurantInfo from "../../components/menu/RestaurantInfo";
 import MenuList from "../../components/menu/MenuList";
-import MenuCategory from "../../components/menu/MenuCategory";
-import MenuItemButton from "../../components/menu/MenuItemButton";
-import Collapsible from "react-native-collapsible";
 import { BottomTabParamList, MenuParamList } from "../../types";
+import ViewOrderButton from "../../components/menu/ViewOrderButton";
+import ViewOrderSheet from "../../components/menu/ViewOrderSheet";
+
+import { getActiveOrder } from "../../redux/slices/orderSlice";
+import { getMenuByRestaurantId } from "../../redux/slices/restaurantSlice";
+
+import Animated from "react-native-reanimated";
+import BottomSheet from "reanimated-bottom-sheet";
 
 import { Text, View } from "../../components/Themed";
 
-import api from "../../api";
-import { NavigationContainer } from "@react-navigation/native";
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from "@react-navigation/stack";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface MenuScreenNavigationProp
   extends StackNavigationProp<MenuParamList, "MenuScreen"> {}
@@ -27,6 +26,7 @@ export interface Props {
 
 interface State {
   menu: Array<Object>;
+  activeOrder: Object;
 }
 
 class MenuScreen extends React.Component<Props, State> {
@@ -36,39 +36,51 @@ class MenuScreen extends React.Component<Props, State> {
     this.state = {
       menu: [],
     };
+
+    this.sheetRef = React.createRef();
   }
 
   async componentDidMount() {
     try {
-      const { data } = await api.restaurant.getMenu(
-        "232d03a0-2001-4a1d-8d07-cbeaaf0ca99a"
-      );
-
-      this.setState({ menu: data });
-      console.log(data);
+      this.props.getMenuByRestaurantId("232d03a0-2001-4a1d-8d07-cbeaaf0ca99a");
+      this.props.getActiveOrder();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
+  renderContent = () => <ViewOrderSheet order={this.props.order.activeOrder} />;
+
   render() {
-    console.log("MenuScreen this.props", this.props);
+    console.log(this.props.restaurant);
     return (
       <View style={styles.container}>
-        {/* <RestaurantInfo></RestaurantInfo> */}
-        <MenuList menu={this.state.menu} navigation={this.props.navigation} />
-        {/* <ScrollView
-          style={styles.scrollContainer}
-          showsVerticalScrollIndicator={false}
-        >
-          {this.state.menu.map((cat) => {
-            console.log("cat", cat);
-            return <MenuCategory category={cat} key={cat.name}></MenuCategory>;
-          })}
-        </ScrollView> */}
+        <MenuList
+          menu={this.props.restaurant?.menu}
+          navigation={this.props.navigation}
+        />
+        <ViewOrderButton onPress={() => this.sheetRef.current.snapTo(450)} />
+        <BottomSheet
+          ref={this.sheetRef}
+          snapPoints={[450, 0]}
+          borderRadius={10}
+          renderContent={this.renderContent}
+        />
       </View>
     );
   }
 }
 
-export default MenuScreen;
+const mapStateToProps = (state) => ({
+  order: state.order,
+  restaurant: state.restaurant,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getActiveOrder: () => dispatch(getActiveOrder()),
+    getMenuByRestaurantId: (id: string) => dispatch(getMenuByRestaurantId(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuScreen);

@@ -1,22 +1,54 @@
 import * as React from "react";
 import styles from "./SizeSelectorButton.styles.js";
-import { Pressable } from "react-native";
 import { Text, View } from "../../../../components/Themed";
-import { Button, StyleSheet, TouchableOpacity } from "react-native";
-//import { RadioButtons } from 'react-native-radio-buttons';
+import { TouchableOpacity, Image } from "react-native";
+interface Props {
+  item: any;
+  sizeOption: any;
+  onPress: any;
+  selected: boolean;
+}
 
-class SizeSelectorButton extends React.Component {
+interface sizeSelectionButtonPhotoInterface {
+  [key: string]: any;
+}
+
+const sizeSelectionButtonPhoto: sizeSelectionButtonPhotoInterface = {
+  Small: require("../../../../images/Small_Drink_Image.png"),
+  Medium: require("../../../../images/Medium_Drink_Image.png"),
+  Large: require("../../../../images/Large_Drink_Image.png"),
+};
+
+class SizeSelectorButton extends React.Component<Props> {
+  constructor(props: any) {
+    super(props);
+  }
+
   render() {
-    const { item, option } = this.props;
-    console.log("======= item", item);
-    console.log("======= option", option);
+    const { item, sizeOption, onPress, selected } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.appButtonContainer}></TouchableOpacity>
-        <Text style={styles.text}>{`${option.option_name[0]} $${
-          item.price + option.price_delta
-        }`}</Text>
-        {/* <Text style={styles.description}>{item.description}</Text> */}
+        <TouchableOpacity
+          onPress={() => onPress(sizeOption.option_id)}
+          style={[
+            styles.appButtonContainer,
+            selected && styles.appButtonContainerSelected,
+          ]}
+        >
+          <Image source={sizeSelectionButtonPhoto[sizeOption.option_name]} />
+        </TouchableOpacity>
+        <View style={styles.sizeSelectorText}>
+          <Text
+            style={[
+              styles.text,
+              styles.textBolded,
+              selected && styles.textSelected,
+            ]}
+          >{`${sizeOption.option_name[0]} `}</Text>
+          <Text style={[styles.text, selected && styles.textSelected]}>{`$${(
+            item.price + sizeOption.price_delta
+          ).toFixed(2)}`}</Text>
+        </View>
       </View>
     );
   }
