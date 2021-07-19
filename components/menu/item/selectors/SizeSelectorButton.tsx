@@ -30,14 +30,21 @@ class SizeSelectorButton extends React.Component<Props> {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => onPress(sizeOption.option_id)}
-          style={[styles.appButtonContainer, selected && styles.appButtonContainerSelected]}
+          style={[
+            styles.appButtonContainer,
+            selected && styles.appButtonContainerSelected,
+          ]}
         >
           <Image source={sizeSelectionButtonPhoto[sizeOption.option_name]} />
         </TouchableOpacity>
         <View style={styles.sizeSelectorText}>
           <Text
-            style={[styles.text, styles.textBolded, selected && styles.textSelected]}
-          >{`${sizeOption.option_name[0]}  `}</Text>
+            style={[
+              styles.text,
+              styles.textBolded,
+              selected && styles.textSelected,
+            ]}
+          >{`${sizeOption.option_name[0]} `}</Text>
           <Text style={[styles.text, selected && styles.textSelected]}>{`$${(
             item.price + sizeOption.price_delta
           ).toFixed(2)}`}</Text>

@@ -1,16 +1,12 @@
 import * as React from "react";
-import {
-  RecyclerViewBackedScrollViewBase,
-  ScrollView,
-  SectionList,
-  TouchableNativeFeedback,
-} from "react-native";
 import styles from "./ItemScreen.styles.js";
 import ItemList from "../../components/menu/item/ItemList";
 import AddToOrderButton from "../../components/menu/item/AddToOrderButton";
 
-import Collapsible from "react-native-collapsible";
-import AddToOrderButton from "../../components/menu/item/AddToOrderButton";
+import _ from "lodash";
+
+import { addItemToOrder } from "../../redux/slices/orderSlice";
+import { connect } from "react-redux";
 
 import { MenuParamList } from "../../types";
 
@@ -43,30 +39,60 @@ class ItemScreen extends React.Component<Props, State> {
 
   handleOptionValueChange = (value, newId, oldId) => {
     const values = this.state.values;
-    values[newId] = value;
-    if (oldId) values[oldId] = 0;
+    values[newId].value = value;
+    if (oldId) values[oldId].value = 0;
     this.setState({ values });
+  };
 
-    console.log("big values", this.state.values);
+  handleQuantityValueChange = (quantity) => {
+    this.setState({
+      values: {
+        ...this.state.values,
+        quantity,
+      },
+    });
+  };
+
+  formatValuesObject = (values) => {
+    const valuesOnly = _.cloneDeep(values);
+    delete valuesOnly.quantity;
+    for (const [key, singleOption] of Object.entries(valuesOnly)) {
+      if (singleOption.selectorType === "size" && singleOption.value == 0) {
+        delete valuesOnly[key];
+      } else if (singleOption.value == 0 && singleOption.defaultValue == 0) {
+        delete valuesOnly[key];
+      }
+    }
+    return valuesOnly;
   };
 
   handleAddToOrder = async () => {
-    await api.order.addItemToOrder({
-      restaurantId: "",
-      price: 2.5,
+    const newValues = this.formatValuesObject(this.state.values);
+
+    this.props.addItemToOrder({
+      orderId: this.props.order?.activeOrder?.orderId ?? "new",
+      restaurantId: "232d03a0-2001-4a1d-8d07-cbeaaf0ca99a",
       menuItemId: this.props.route.params.itemId,
-      numberOfItems: 1,
-      optionValues: this.state.values,
+      quantity: this.state.values.quantity,
+      optionValues: newValues,
     });
+
+    this.props.navigation.goBack();
   };
 
   async componentDidMount() {
     try {
-      const values = {};
-      const { data } = await api.menu.getItem(this.props.route.params.itemId);
+      const values = { quantity: 1 };
+      const { data } = await api.menu.getItemOptions(
+        this.props.route.params.itemId
+      );
       for (const optionCategory of data) {
         for (const singleOption of optionCategory.options) {
-          values[singleOption.option_id] = singleOption.default_value;
+          values[singleOption.option_id] = {
+            defaultValue: singleOption.default_value,
+            value: singleOption.default_value,
+            selectorType: singleOption.selector_type,
+          };
         }
       }
       this.setState({ values, options: data });
@@ -81,15 +107,27 @@ class ItemScreen extends React.Component<Props, State> {
           item={this.props.route.params.item}
           options={this.state.options}
           onOptionValueChange={this.handleOptionValueChange}
+          onQuantityValueChange={this.handleQuantityValueChange}
           values={this.state.values}
         />
         <AddToOrderButton
           onPress={this.handleAddToOrder}
           style={styles.addToOrderButton}
+          quantity={this.state.values.quantity}
         />
       </View>
     );
   }
 }
 
-export default ItemScreen;
+const mapStateToProps = (state) => ({
+  order: state.order,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToOrder: (data: Object) => dispatch(addItemToOrder(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemScreen);

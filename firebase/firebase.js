@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "@firebase/auth";
+import store from "../redux/store";
 // import "firebase/analytics";
 
 import {
@@ -23,15 +24,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// firebase.auth().onAuthStateChanged(async (user) => {
-//   console.log("onAuthStateChanged", user);
-//   const idToken = await user?.getIdToken();
-//   console.log("idToken", idToken);
-//   axios.defaults.headers.common = {
-//     Authorization: `Bearer ${idToken}`,
-//   };
-// });
-
-// firebase.analytics();
-
+firebase.auth().onAuthStateChanged(async (user) => {
+  const token = await user?.getIdToken();
+  store.dispatch({ type: "account/setToken", payload: token });
+});
 export default firebase;

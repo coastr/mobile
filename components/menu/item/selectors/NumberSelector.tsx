@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./NumberSelectorStyles";
+import styles from "./NumberSelectorStyles.js";
 import {
   ScrollView,
   FlatList,
@@ -21,24 +21,23 @@ class NumberSelector extends React.Component {
   }
 
   handleOptionChange(id: string, value: number) {
-    console.log("id", id);
-    console.log("value", value);
     this.props.onSizeSelected(value, id);
   }
 
   render() {
     const { options, item, optionCategory } = this.props;
     const { showItems } = this.state;
-    console.log("OPTION CATEGORY", optionCategory);
     return (
       <View style={styles.container}>
         <Pressable onPress={() => this.setState({ showItems: !showItems })}>
-          <View>
-            <Text>{optionCategory.name}</Text>
+          <View style={styles.headerContainer}>
+            <Text style={styles.name}>{optionCategory.name}</Text>
+            <Text style={styles.name}>{showItems ? "-" : "+"}</Text>
           </View>
         </Pressable>
         <Collapsible collapsed={!showItems}>
           <FlatList
+            style={styles.list}
             data={this.props.options}
             keyExtractor={(item) => item.option_id}
             showsVerticalScrollIndicator={false}

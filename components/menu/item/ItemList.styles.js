@@ -14,6 +14,10 @@ export default StyleSheet.create({
     paddingTop: 17,
     paddingBottom: 17,
   },
+  list: {
+    padding: 12,
+    overflow: "visible",
+  },
   button: {
     flexDirection: "row",
     // justifyContent: "flex-start",
@@ -35,8 +39,7 @@ export default StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   separator: {
-    marginVertical: 30,
     height: 1,
-    width: "80%",
+    width: "100%",
   },
 });

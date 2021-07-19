@@ -17,18 +17,20 @@ class SizeSelector extends React.Component<Props> {
 
   async componentDidMount() {
     for (const singleOption of this.props.options) {
-      if (this.props.values[singleOption.option_id] === 1) {
+      if (this.props.values[singleOption.option_id].value === 1) {
         this.setState({ currentId: singleOption.option_id });
       }
     }
   }
 
   handleSizeSelected = (id: string) => {
-    const oldId = this.state.currentId;
-    this.setState({
-      currentId: id,
-    });
-    this.props.onSizeSelected(1, id, oldId);
+    if (id != this.state.currentId) {
+      const oldId = this.state.currentId;
+      this.setState({
+        currentId: id,
+      });
+      this.props.onSizeSelected(1, id, oldId);
+    }
   };
 
   render() {
@@ -41,7 +43,7 @@ class SizeSelector extends React.Component<Props> {
             sizeOption={sizeOption}
             item={item}
             key={sizeOption.position.toString()}
-            selected={this.props.values[sizeOption.option_id]}
+            selected={this.props.values[sizeOption.option_id].value}
           />
         ))}
       </View>

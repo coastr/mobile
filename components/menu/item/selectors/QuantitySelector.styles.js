@@ -4,21 +4,23 @@ export default StyleSheet.create({
   container: {
     flexDirection: "row",
     borderRadius: 30,
-    paddingRight: 30,
     paddingLeft: 30,
+    paddingRight: 30,
     paddingTop: 17,
     paddingBottom: 17,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FFFFFF",
   },
 
   button: {
-    // position: "relative",
-    width: 30,
-    height: 30,
+    flexDirection: "row",
+    position: "relative",
+    width: 55,
+    height: 39,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 25,
+    borderRadius: 16,
     backgroundColor: "#D9D9D9",
   },
 
@@ -26,30 +28,21 @@ export default StyleSheet.create({
     backgroundColor: "#353535",
   },
 
+  textContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 50,
+    paddingVertical: 15,
+    backgroundColor: "transparent",
+  },
+
   buttonText: {
-    color: "#EEEEEE",
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 18,
     marginTop: 0,
     width: "100%",
-  },
-
-  text: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 15,
-    fontSize: 15,
-    color: "#000000",
-    fontWeight: "bold",
-  },
-
-  textContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    backgroundColor: "transparent",
+    color: "#FFFFFF",
   },
 
   counterText: {
@@ -57,7 +50,7 @@ export default StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 40,
     paddingVertical: 15,
-    fontSize: 15,
+    fontSize: 30,
     color: "#353535",
     fontWeight: "bold",
     position: "absolute",
