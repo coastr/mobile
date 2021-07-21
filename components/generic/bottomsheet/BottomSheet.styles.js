@@ -6,6 +6,7 @@ export default StyleSheet.create({
     paddingHorizontal: 19,
     position: "absolute",
     width: "100%",
+    height: "100%",
   },
   contentContainer: {
     flex: 1,

@@ -16,6 +16,7 @@ class ViewOrderSheet extends React.Component {
         <BottomSheetFlatList
           data={this.props.order.items}
           keyExtractor={(item) => item.orderItemId}
+          showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           ListHeaderComponent={() => (
             <View style={styles.restaurantContainer}>
