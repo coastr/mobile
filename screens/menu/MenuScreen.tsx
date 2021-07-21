@@ -4,14 +4,12 @@ import { connect } from "react-redux";
 
 import MenuList from "../../components/menu/MenuList";
 import { BottomTabParamList, MenuParamList } from "../../types";
-import ViewOrderButton from "../../components/menu/ViewOrderButton";
-import ViewOrderSheet from "../../components/menu/ViewOrderSheet";
+import ViewOrderButton from "../../components/menu/order/ViewOrderButton";
+import ViewOrderSheet from "../../components/menu/order/ViewOrderSheet";
+import BottomSheet from "../../components/generic/bottomsheet/BottomSheet";
 
 import { getActiveOrder } from "../../redux/slices/orderSlice";
 import { getMenuByRestaurantId } from "../../redux/slices/restaurantSlice";
-
-import Animated from "react-native-reanimated";
-import BottomSheet from "reanimated-bottom-sheet";
 
 import { Text, View } from "../../components/Themed";
 
@@ -37,7 +35,7 @@ class MenuScreen extends React.Component<Props, State> {
       menu: [],
     };
 
-    this.sheetRef = React.createRef();
+    this.bottomSheetRef = React.createRef();
   }
 
   async componentDidMount() {
@@ -49,7 +47,9 @@ class MenuScreen extends React.Component<Props, State> {
     }
   }
 
-  renderContent = () => <ViewOrderSheet order={this.props.order.activeOrder} />;
+  handleViewOrderPress = () => {
+    this.bottomSheetRef.current?.present();
+  };
 
   render() {
     console.log(this.props.restaurant);
@@ -59,13 +59,13 @@ class MenuScreen extends React.Component<Props, State> {
           menu={this.props.restaurant?.menu}
           navigation={this.props.navigation}
         />
-        <ViewOrderButton onPress={() => this.sheetRef.current.snapTo(450)} />
-        <BottomSheet
-          ref={this.sheetRef}
-          snapPoints={[450, 0]}
-          borderRadius={10}
-          renderContent={this.renderContent}
-        />
+        <ViewOrderButton onPress={this.handleViewOrderPress} />
+        <BottomSheet ref={this.bottomSheetRef}>
+          <ViewOrderSheet
+            order={this.props.order.activeOrder}
+            navigation={this.props.navigation}
+          />
+        </BottomSheet>
       </View>
     );
   }

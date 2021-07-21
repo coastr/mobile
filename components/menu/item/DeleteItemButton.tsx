@@ -12,7 +12,11 @@ class DeleteItemButton extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity activeOpacity={0.5} style={styles.button}>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.button}
+          onPress={this.props.onPress}
+        >
           <Text style={styles.buttonText}>remove item</Text>
         </TouchableOpacity>
       </View>

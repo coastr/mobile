@@ -3,9 +3,6 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./RegistrationScreen.styles";
 import api from "../../api";
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-// import firebase from "firebase/app";
-// import "firebase/auth";
 
 import { firebase } from "../../firebase";
 
@@ -20,25 +17,23 @@ export default function RegistrationScreen({ navigation }) {
   };
 
   const onRegisterPress = () => {
-    // const auth = getAuth();
     console.log("email", email);
     console.log("password", password);
-    // firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then(async (userCredential) => {
-    //     console.log("userCredential", userCredential);
-    //     const user = userCredential.user;
-    //     console.log("user", user);
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(async (userCredential) => {
+        console.log("userCredential", userCredential);
+        const user = userCredential.user;
+        console.log("user", user);
 
-    //     await api.account.createAccount({ name: fullName, email });
-    //   })
-    //   .catch((error) => {
-    //     console.log("error", error);
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
+        await api.account.createAccount({ name: fullName, email });
+      })
+      .catch((error) => {
+        console.log("error", error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
 
   return (
@@ -47,10 +42,6 @@ export default function RegistrationScreen({ navigation }) {
         style={{ flex: 1, width: "100%" }}
         keyboardShouldPersistTaps="always"
       >
-        {/* <Image
-          style={styles.logo}
-          source={require("../../../assets/icon.png")}
-        /> */}
         <TextInput
           style={styles.input}
           placeholder="Full Name"

@@ -12,7 +12,6 @@ export default StyleSheet.create({
     paddingRight: 30,
     paddingTop: 17,
     paddingBottom: 17,
-    elevation: 4,
   },
 
   info: {

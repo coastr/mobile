@@ -1,15 +1,14 @@
 import * as React from "react";
 import styles from "./ViewOrderButton.styles.js";
-import { Text, View } from "../Themed";
-
-import { TouchableOpacity } from "react-native";
+import { Text, View } from "../../Themed";
+import BottomButton from "../../generic/BottomButton";
 
 class ViewOrderButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress} style={styles.container}>
+      <BottomButton onPress={this.props.onPress}>
         <Text>View Order</Text>
-      </TouchableOpacity>
+      </BottomButton>
     );
   }
 }

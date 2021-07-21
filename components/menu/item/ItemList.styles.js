@@ -7,7 +7,6 @@ export default StyleSheet.create({
     width: "90%",
     backgroundColor: "#FFFFFF",
     color: "#FFFFFF",
-    // elevation: 4,
     borderRadius: 9,
     paddingLeft: 30,
     paddingRight: 30,
@@ -20,7 +19,6 @@ export default StyleSheet.create({
   },
   button: {
     flexDirection: "row",
-    // justifyContent: "flex-start",
   },
   title: {
     fontSize: 17,
@@ -40,6 +38,7 @@ export default StyleSheet.create({
   },
   separator: {
     height: 1,
+    backgroundColor: "#F4F4F4",
     width: "100%",
   },
 });

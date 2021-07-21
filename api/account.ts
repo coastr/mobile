@@ -1,8 +1,5 @@
 import axios from "../axios";
 import { user } from "../firebase";
-import { COASTR_URL } from "@env";
-
-axios.defaults.baseURL = `${COASTR_URL}`;
 
 const getAccount = () => {
   return axios.get(`/account`, {}).catch((err) => {

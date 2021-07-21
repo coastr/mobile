@@ -2,6 +2,9 @@ import * as React from "react";
 import { Pressable } from "react-native";
 import styles from "./MenuItemButton.styles.js";
 
+import { setCurrentItem } from "../../redux/slices/orderSlice";
+import { connect } from "react-redux";
+
 import { Text, View } from "../../components/Themed";
 
 interface Props {
@@ -16,26 +19,29 @@ interface Props {
 }
 
 class MenuItemButton extends React.Component<Props> {
+  handleItemPress = () => {
+    this.props.setCurrentItem(this.props.item);
+    this.props.navigation.navigate("ItemScreen");
+  };
+
   render() {
     const { item } = this.props;
     return (
-      <Pressable
-        style={styles.container}
-        onPress={() => {
-          this.props.navigation.navigate("ItemScreen", {
-            itemId: item.item_id,
-            item,
-          });
-        }}
-      >
+      <Pressable style={styles.container} onPress={this.handleItemPress}>
         <View>
-          <Text style={styles.title}>{item.item_name}</Text>
+          <Text style={styles.title}>{item.menuItemName}</Text>
           <Text style={styles.description}>{item.description}</Text>
-          <Text style={styles.price}>{`$${item.price.toFixed(2)}`}</Text>
+          <Text style={styles.price}>{`$${item.menuItemPrice.toFixed(
+            2
+          )}`}</Text>
         </View>
       </Pressable>
     );
   }
 }
 
-export default MenuItemButton;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentItem: (data: Object) => dispatch(setCurrentItem(data)),
+});
+
+export default connect(null, mapDispatchToProps)(MenuItemButton);

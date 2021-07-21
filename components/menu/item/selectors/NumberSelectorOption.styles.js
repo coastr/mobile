@@ -13,7 +13,6 @@ export default StyleSheet.create({
   },
 
   button: {
-    // position: "relative",
     width: 30,
     height: 30,
     justifyContent: "center",
@@ -55,8 +54,6 @@ export default StyleSheet.create({
   counterText: {
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 40,
-    paddingVertical: 15,
     fontSize: 15,
     color: "#353535",
     fontWeight: "bold",

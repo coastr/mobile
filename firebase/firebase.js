@@ -22,7 +22,9 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 firebase.auth().onAuthStateChanged(async (user) => {
   const token = await user?.getIdToken();

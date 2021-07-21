@@ -6,8 +6,16 @@ import { Text, View } from "../../../components/Themed";
 export default function AddToOrderButton(props) {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <Text style={styles.addToOrderText}>add {props.quantity} to order</Text>
-      <Text style={styles.priceText}>$3.00</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.addToOrderText}>
+          {!props.isEditing ? `add ${props.quantity} to` : "update"} order
+        </Text>
+        <Text style={styles.priceText}> ${props.price.toFixed(2)}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
+
+const mapStateToProps = (state) => ({
+  order: state.order,
+});
