@@ -37,7 +37,7 @@ const BottomSheet = React.forwardRef(({ bottomSheetRef, children }, ref) => {
           onChange={handleSheetChanges}
           backdropComponent={BottomSheetBackdrop}
         >
-          <View style={styles.container}>{children}</View>
+          <View style={styles.contentContainer}>{children}</View>
 
           {/* <View style={styles.contentContainer}>
           <Text>Awesome 🎉</Text>
