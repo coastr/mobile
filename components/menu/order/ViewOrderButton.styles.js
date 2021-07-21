@@ -6,6 +6,7 @@ export default StyleSheet.create({
     position: "absolute",
     bottom: 0,
     padding: 20,
+    zIndex: 100,
   },
   viewOrder: {
     marginLeft: 10,

@@ -21,11 +21,35 @@ const addItemToOrder = ({
       optionValues,
     })
     .catch((err) => {
-      console.error("err", err);
+      console.error(err);
     });
+};
+
+const updateItemInOrder = ({
+  orderId,
+  orderItemId,
+  quantity,
+  optionValues,
+}) => {
+  return axios
+    .put(`/order/${orderId}/item/${orderItemId}`, {
+      quantity,
+      optionValues,
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const deleteItem = ({ orderId, orderItemId }) => {
+  return axios.delete(`/order/${orderId}/item/${orderItemId}`).catch((err) => {
+    console.error(err);
+  });
 };
 
 export default {
   addItemToOrder,
   getActiveOrder,
+  updateItemInOrder,
+  deleteItem,
 };

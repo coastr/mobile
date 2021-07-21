@@ -42,7 +42,9 @@ class ItemList extends React.Component<Props> {
               }
               values={this.props.values}
             />
-            <DeleteItemButton />
+            {this.props.isEditing && (
+              <DeleteItemButton onPress={this.props.onItemDelete} />
+            )}
           </>
         )}
         renderItem={(optionCategory, index) => {

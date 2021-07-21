@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api";
 
 export const accountSlice = createSlice({
   name: "account",
@@ -10,7 +9,6 @@ export const accountSlice = createSlice({
   },
   reducers: {
     setToken: (state, action) => {
-      console.log("=======================action.payload", action.payload);
       state.token = action.payload;
     },
   },

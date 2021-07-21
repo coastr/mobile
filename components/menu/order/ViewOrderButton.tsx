@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./ViewOrderButton.styles.js";
 import { LinearGradient } from "expo-linear-gradient";
-import { Text, View } from "../Themed";
+import { Text, View } from "../../Themed";
 
 import { TouchableOpacity } from "react-native";
 

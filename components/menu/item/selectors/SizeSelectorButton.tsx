@@ -46,7 +46,7 @@ class SizeSelectorButton extends React.Component<Props> {
             ]}
           >{`${sizeOption.option_name[0]} `}</Text>
           <Text style={[styles.text, selected && styles.textSelected]}>{`$${(
-            item.price + sizeOption.price_delta
+            item.menuItemPrice + sizeOption.price_delta
           ).toFixed(2)}`}</Text>
         </View>
       </View>
