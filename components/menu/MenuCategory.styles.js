@@ -3,16 +3,12 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     // elevation: 4,
-    backgroundColor: "#FFFFFF",
     marginTop: 6,
   },
   list: {
     overflow: "visible",
   },
   button: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
     width: "100%",
     backgroundColor: "#FFFFFF",
     elevation: 4,
@@ -25,8 +21,10 @@ export default StyleSheet.create({
   name: {
     fontFamily: "Poppins-Bold",
     fontSize: 26,
-    marginLeft: 0,
     color: "#343434",
+    lineHeight: 40,
+    paddingTop: 5,
+    // paddingBottom: 5,
   },
   separator: {
     backgroundColor: "#F4F4F4",

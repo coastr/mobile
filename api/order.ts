@@ -1,7 +1,4 @@
 import axios from "../axios";
-import { COASTR_URL } from "@env";
-
-axios.defaults.baseURL = `${COASTR_URL}`;
 
 const getActiveOrder = (restaurantId: string) => {
   return axios.get(`/order/restaurant/${restaurantId}/active`).catch((err) => {

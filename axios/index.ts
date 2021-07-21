@@ -1,5 +1,10 @@
 import axios from "axios";
 import { user } from "../firebase";
+import { COASTR_URL } from "@env";
+
+axios.defaults.baseURL = `${COASTR_URL}`;
+
+console.log("axios", axios.defaults.baseURL);
 
 axios.interceptors.request.use(async (config) => {
   const idToken = await user.getCurrentUserIdTokenAsync();

@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   nameText: {
     fontFamily: "Poppins-Bold",
-    fontSize: 30,
+    fontSize: 28,
     marginLeft: 15,
     marginBottom: -8,
   },
