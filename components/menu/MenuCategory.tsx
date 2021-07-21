@@ -44,7 +44,7 @@ class MenuCategory extends React.Component<
           <FlatList
             style={styles.list}
             data={category.items}
-            keyExtractor={(item) => item.position.toString()}
+            keyExtractor={(item) => item.menuItemId}
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
             renderItem={({ item }) => {
@@ -56,9 +56,6 @@ class MenuCategory extends React.Component<
               );
             }}
           />
-          {/* {category.items.map((item) => {
-            return <MenuItemButton item={item} key={item.position} />;
-          })} */}
         </Collapsible>
       </View>
     );

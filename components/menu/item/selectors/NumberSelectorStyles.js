@@ -21,7 +21,7 @@ export default StyleSheet.create({
   },
   actions: {},
   name: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     marginLeft: 22,
     color: "#343434",
@@ -36,10 +36,10 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     backgroundColor: "#FFFFFF",
-    elevation: 4,
+    // elevation: 4,
     borderRadius: 9,
     paddingHorizontal: 13,
     paddingRight: 50,
-    paddingVertical: 18,
+    paddingVertical: 17,
   },
 });

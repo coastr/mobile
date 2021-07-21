@@ -15,7 +15,6 @@ export default class LoginScreen extends React.Component {
   // const [password, setPassword] = useState("");
 
   onFooterLinkPress = () => {
-    r;
     this.props.navigation.navigate("RegistrationScreen");
   };
 
