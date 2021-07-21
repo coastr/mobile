@@ -1,5 +1,4 @@
 import axios from "../axios";
-import { COASTR_URL } from "@env";
 
 const getItemOptions = (id: string) => {
   return axios.get(`/menu/item/${id}/options`).catch((err) => {
