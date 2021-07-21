@@ -11,6 +11,16 @@ export const getMenuByRestaurantId = createAsyncThunk(
   }
 );
 
+export const getRestaurantById = createAsyncThunk(
+  "restaurant/getRestaurantById",
+  async (restaurantId: string) => {
+    const { data: menu } = await api.restaurant.getMenu(
+      "232d03a0-2001-4a1d-8d07-cbeaaf0ca99a"
+    );
+    return menu;
+  }
+);
+
 export const restaurantSlice = createSlice({
   name: "order",
   initialState: {

@@ -1,10 +1,12 @@
 import axios from "axios";
-import { user } from "../firebase";
+import { COASTR_URL } from "@env";
+import store from "../redux/store";
+
+axios.defaults.baseURL = `${COASTR_URL}`;
 
 axios.interceptors.request.use(async (config) => {
-  const idToken = await user.getCurrentUserIdTokenAsync();
-  console.log("idToken", idToken);
-  if (idToken) config.headers.Authorization = `Bearer ${idToken}`;
+  const { token } = store.getState().account;
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 

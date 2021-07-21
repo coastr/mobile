@@ -20,7 +20,7 @@ class MenuList extends React.Component<Props> {
       <FlatList
         style={styles.list}
         data={this.props.menu}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.menuCategoryId}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={RestaurantInfo}
         renderItem={({ item }) => {

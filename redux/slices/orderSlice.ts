@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import api from "../../api";
 
 export const getActiveOrder = createAsyncThunk(
@@ -29,6 +29,30 @@ export const addItemToOrder = createAsyncThunk(
   }
 );
 
+export const updateItemInOrder = createAsyncThunk(
+  "order/updateItemInOrder",
+  async ({ orderId, orderItemId, quantity, optionValues }, thunkAPI) => {
+    await api.order.updateItemInOrder({
+      orderId,
+      orderItemId,
+      quantity,
+      optionValues,
+    });
+    thunkAPI.dispatch(getActiveOrder());
+  }
+);
+
+export const deleteItemFromOrder = createAsyncThunk(
+  "order/updateItemInOrder",
+  async ({ orderId, orderItemId }, thunkAPI) => {
+    await api.order.deleteItem({
+      orderId,
+      orderItemId,
+    });
+    thunkAPI.dispatch(getActiveOrder());
+  }
+);
+
 export const orderSlice = createSlice({
   name: "order",
   initialState: {
@@ -41,8 +65,13 @@ export const orderSlice = createSlice({
       status: "",
       orderId: "",
     },
+    currentItem: {},
   },
-  reducers: {},
+  reducers: {
+    setCurrentItem: (state, action: PayloadAction) => {
+      state.currentItem = action.payload;
+    },
+  },
   extraReducers: {
     [getActiveOrder.fulfilled]: (state, action) => {
       state.activeOrder = action.payload;
@@ -52,5 +81,7 @@ export const orderSlice = createSlice({
     },
   },
 });
+
+export const { setCurrentItem } = orderSlice.actions;
 
 export default orderSlice.reducer;
