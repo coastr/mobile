@@ -19,12 +19,14 @@ import ItemScreen from "../screens/menu/ItemScreen";
 import LoginScreen from "../screens/account/LoginScreen";
 import RegistrationScreen from "../screens/account/RegistrationScreen";
 import AccountScreen from "../screens/account/AccountScreen";
+import BillScreen from "../screens/bill/BillScreen";
 
 import {
   BottomTabParamList,
   MenuParamList,
   AccountParamList,
   LoginParamList,
+  BillParamList,
 } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -190,6 +192,16 @@ export default function BottomTabNavigator() {
         />
 
         <BottomTab.Screen
+          name="Bill"
+          component={BillNavigator}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name="ios-code" color={color} />
+            ),
+          }}
+        />
+
+        <BottomTab.Screen
           name="Account"
           component={token ? AccountNavigator : LoginNavigator}
           options={{
@@ -231,6 +243,20 @@ function MenuTabNavigator() {
         options={{ headerShown: true }}
       />
     </MenuStack.Navigator>
+  );
+}
+
+const BillStack = createStackNavigator<BillParamList>();
+
+function BillNavigator() {
+  return (
+    <BillStack.Navigator>
+      <BillStack.Screen
+        name="BillScreen"
+        component={BillScreen}
+        options={{ headerShown: true }}
+      />
+    </BillStack.Navigator>
   );
 }
 
