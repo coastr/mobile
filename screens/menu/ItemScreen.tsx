@@ -45,6 +45,7 @@ class ItemScreen extends React.Component<Props, State> {
 
   async componentDidMount() {
     try {
+      console.log("****ITEMSCREEN this.props.order", this.props.order);
       const { data: menuOptions } = await api.menu.getItemOptions(
         this.props.order.currentItem.menuItemId
       );
@@ -113,11 +114,6 @@ class ItemScreen extends React.Component<Props, State> {
       return 0;
     }
     var priceTotal = 0;
-    console.log("currentItem", this.props.order.currentItem);
-    console.log(
-      "currentItem.menuItemPrice",
-      this.props.order.currentItem.menuItemPrice
-    );
 
     priceTotal += this.props.order.currentItem.menuItemPrice;
     for (const optionCategory of this.state.options) {

@@ -7,9 +7,9 @@ const getAccount = () => {
   });
 };
 
-const createAccount = (data) => {
+const createAccount = ({ name, email }) => {
   console.log("data", data);
-  return axios.post(`/account/new/`, data).catch((err) => {
+  return axios.post(`/account/new/`, { name, email }).catch((err) => {
     console.log("err", err);
   });
 };

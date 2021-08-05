@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "@firebase/auth";
 import store from "../redux/store";
+import api from "../api";
 // import "firebase/analytics";
 
 import {
@@ -27,7 +28,19 @@ if (!firebase.apps.length) {
 }
 
 firebase.auth().onAuthStateChanged(async (user) => {
-  const token = await user?.getIdToken();
-  store.dispatch({ type: "account/setToken", payload: token });
+  console.log("=====FIREBASE USER", user);
+
+  if (user) {
+    console.log("Token exists, setting redux account token");
+    const token = await user?.getIdToken();
+    if (token) {
+      console.log("=====FIREBASE TOKEN", token);
+      store.dispatch({ type: "account/setToken", payload: token });
+    }
+    store.dispatch({ type: "account/setAnonymous", payload: user.isAnonymous });
+  } else {
+    console.log("Token does NOT exist, signing in anonymously");
+    firebase.auth().signInAnonymously();
+  }
 });
 export default firebase;

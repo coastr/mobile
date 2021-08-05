@@ -4,7 +4,6 @@ import api from "../../api";
 export const getMenuByRestaurantId = createAsyncThunk(
   "restaurant/getMenuByRestaurantId",
   async (restaurantId: string) => {
-    console.log("swag");
     const { data: menu } = await api.restaurant.getMenu(
       "232d03a0-2001-4a1d-8d07-cbeaaf0ca99a"
     );

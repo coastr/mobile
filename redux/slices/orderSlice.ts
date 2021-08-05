@@ -69,6 +69,7 @@ export const orderSlice = createSlice({
   },
   reducers: {
     setCurrentItem: (state, action: PayloadAction) => {
+      console.log("*****setCurrentItem***", action);
       state.currentItem = action.payload;
     },
   },
