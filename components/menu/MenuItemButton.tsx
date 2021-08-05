@@ -20,6 +20,7 @@ interface Props {
 
 class MenuItemButton extends React.Component<Props> {
   handleItemPress = () => {
+    console.log("handleItemPress");
     this.props.setCurrentItem(this.props.item);
     this.props.navigation.navigate("ItemScreen");
   };
@@ -27,20 +28,26 @@ class MenuItemButton extends React.Component<Props> {
   render() {
     const { item } = this.props;
     return (
-      <Pressable onPress={this.handleItemPress}
-        style={styles.container}>
-        <View style={{flexDirection:"row", height:100}}>
-          <View style={{flex:2, width:100, height:100, alignItems: "center"}}>
-            <Image style={styles.image} source={require('../../assets/images/coldDrinks.png')}/>
+      <Pressable onPress={this.handleItemPress} style={styles.container}>
+        <View style={{ flexDirection: "row", height: 100 }}>
+          <View
+            style={{ flex: 2, width: 100, height: 100, alignItems: "center" }}
+          >
+            <Image
+              style={styles.image}
+              source={require("../../assets/images/coldDrinks.png")}
+            />
           </View>
-          <View style={{flex:4, justifyContent:'center'}}>
+          <View style={{ flex: 4, justifyContent: "center" }}>
             <Text style={styles.title}>{item.menuItemName}</Text>
-            <Text numberOfLines={2} style={styles.description}>{item.description}</Text>
-            <Text style={styles.price}>{`$${item.menuItemPrice.toFixed(2)}`}</Text>
+            <Text numberOfLines={2} style={styles.description}>
+              {item.description}
+            </Text>
+            <Text style={styles.price}>{`$${item.menuItemPrice.toFixed(
+              2
+            )}`}</Text>
           </View>
-
         </View>
-
       </Pressable>
     );
   }

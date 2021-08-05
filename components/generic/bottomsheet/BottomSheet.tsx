@@ -22,7 +22,7 @@ const BottomSheet = React.forwardRef(({ bottomSheetRef, children }, ref) => {
   // }, []);
 
   const handleSheetChanges = useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
+    // console.log("handleSheetChanges", index);
   }, []);
 
   useEffect(() => {});
