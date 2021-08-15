@@ -7,6 +7,7 @@ import { BottomTabParamList, MenuParamList } from "../../types";
 import ViewOrderButton from "../../components/menu/order/ViewOrderButton";
 import ViewOrderSheet from "../../components/menu/order/ViewOrderSheet";
 import BottomSheet from "../../components/generic/bottomsheet/BottomSheet";
+import MenuButton from "../../components/menu/MenuButton";
 
 import { getActiveOrder } from "../../redux/slices/orderSlice";
 import { getMenuByRestaurantId } from "../../redux/slices/restaurantSlice";
@@ -59,7 +60,11 @@ class MenuScreen extends React.Component<Props, State> {
           menu={this.props.restaurant?.menu}
           navigation={this.props.navigation}
         />
-        <ViewOrderButton onPress={this.handleViewOrderPress} />
+        <View style={{flexDirection:"row", backgroundColor:'rgba(0, 0, 0, 0)'}}>
+          <ViewOrderButton onPress={this.handleViewOrderPress}/>
+          <MenuButton/>
+        </View>
+
         <BottomSheet ref={this.bottomSheetRef}>
           <ViewOrderSheet
             order={this.props.order.activeOrder}

@@ -4,6 +4,7 @@ export default StyleSheet.create({
   container: {
     // elevation: 4,
     marginTop: 6,
+    borderRadius: 9,
   },
   list: {
     overflow: "visible",

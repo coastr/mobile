@@ -2,11 +2,11 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    flex: 4,
+    flex: 2,
   },
-  viewOrder: {
-    marginLeft: 10,
-    marginRight: 5,
+  viewMenu: {
+    marginRight: 10,
+    marginLeft: 5,
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
     borderBottomLeftRadius: 0,
