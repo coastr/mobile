@@ -3,7 +3,7 @@ import styles from "./BillScreen.styles.js";
 import { connect } from "react-redux";
 
 import { Text, View } from "../../components/Themed";
-// import Bottom
+import BillContainer from "../../components/bill/BillContainer";
 
 import { BillParamList } from "../../types.js";
 
@@ -37,6 +37,7 @@ class BillScreen extends React.Component<Props, State> {
     console.log(this.props.restaurant);
     return (
       <View style={styles.container}>
+        <BillContainer></BillContainer>
         {/* <MenuList
           menu={this.props.restaurant?.menu}
           navigation={this.props.navigation}
