@@ -12,10 +12,11 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import MenuScreen from "../screens/menu/MenuScreen";
 import ItemScreen from "../screens/menu/ItemScreen";
+import BillScreen from "../screens/bill/BillScreen";
 import LoginScreen from "../screens/account/LoginScreen";
 import RegistrationScreen from "../screens/account/RegistrationScreen";
 
-import { BottomTabParamList, MenuParamList, AccountParamList } from "../types";
+import { BottomTabParamList, MenuParamList, BillParamList, AccountParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -30,6 +31,16 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="Menu"
         component={MenuTabNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Bill"
+        component={BillTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
@@ -78,6 +89,20 @@ function MenuTabNavigator() {
         options={{ headerShown: true }}
       />
     </MenuStack.Navigator>
+  );
+}
+
+const BillStack = createStackNavigator<BillParamList>();
+
+function BillTabNavigator() {
+  return (
+    <BillStack.Navigator>
+      <BillStack.Screen
+        name="BillScreen"
+        component={BillScreen}
+        options={{ headerShown: true }}
+      />
+    </BillStack.Navigator>
   );
 }
 
