@@ -4,6 +4,7 @@
  */
 
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
@@ -34,7 +35,7 @@ export default function BottomTabNavigator() {
         component={HomeTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="home" color={color} />
           ),
         }}
       />
@@ -44,7 +45,7 @@ export default function BottomTabNavigator() {
         component={MenuTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="list" color={color} />
           ),
         }}
       />
@@ -54,7 +55,7 @@ export default function BottomTabNavigator() {
         component={BillTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="receipt" color={color} />
           ),
         }}
       />
@@ -64,7 +65,7 @@ export default function BottomTabNavigator() {
         component={AccountTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="person" color={color} />
           ),
         }}
       />
@@ -125,7 +126,14 @@ function BillTabNavigator() {
       <BillStack.Screen
         name="BillScreen"
         component={BillScreen}
-        options={{ headerShown: true }}
+        options={{ 
+          headerShown: true,
+          title: 'Pay Your Bill',
+          headerStyle: {
+            backgroundColor: '#2B5DE7',
+          },
+          headerTintColor: '#fff'
+        }}
       />
     </BillStack.Navigator>
   );
