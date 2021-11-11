@@ -10,13 +10,14 @@ import * as React from "react";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
+import HomeScreen from "../screens/home/HomeScreen"
 import MenuScreen from "../screens/menu/MenuScreen";
 import ItemScreen from "../screens/menu/ItemScreen";
 import BillScreen from "../screens/bill/BillScreen";
 import LoginScreen from "../screens/account/LoginScreen";
 import RegistrationScreen from "../screens/account/RegistrationScreen";
 
-import { BottomTabParamList, MenuParamList, BillParamList, AccountParamList } from "../types";
+import { BottomTabParamList, HompeParamList, MenuParamList, BillParamList, AccountParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -25,9 +26,19 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Menu"
+      initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
+      <BottomTab.Screen
+        name="Home"
+        component={HomeTabNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      
       <BottomTab.Screen
         name="Menu"
         component={MenuTabNavigator}
@@ -72,6 +83,20 @@ function TabBarIcon(props: {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
+
+const HomeStack = createStackNavigator<HomeParamList>();
+
+function HomeTabNavigator() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerShown: true }}
+      />
+    </HomeStack.Navigator>
+  );
+}
 
 const MenuStack = createStackNavigator<MenuParamList>();
 

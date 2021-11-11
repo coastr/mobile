@@ -55,6 +55,7 @@ class MenuScreen extends React.Component<Props, State> {
     console.log("MenuScreen this.props", this.props);
     return (
       <View style={styles.container}>
+        
         {/* <RestaurantInfo></RestaurantInfo> */}
         <MenuList menu={this.state.menu} navigation={this.props.navigation} />
         {/* <ScrollView
