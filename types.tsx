@@ -9,10 +9,15 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
+  Home: undefined;
   Menu: undefined;
   Bill: undefined;
   Account: undefined;
 };
+
+export type HomeParamList = {
+  HomeScreen: undefined;
+}
 
 export type MenuParamList = {
   MenuScreen: undefined;

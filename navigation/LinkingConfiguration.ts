@@ -12,9 +12,9 @@ export default {
     screens: {
       Root: {
         screens: {
-          Menu: {
+          Home: {
             screens: {
-              MenuScreen: "one",
+              HomeScreen: "one",
             },
           },
           // TabOne: {
