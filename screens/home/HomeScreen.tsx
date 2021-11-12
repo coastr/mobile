@@ -52,13 +52,26 @@ class HomeScreen extends React.Component<Props, State> {
     console.log("HomeScreen this.props", this.props);
     return (
       <View style={styles.container}>
-        <Text>Welcome to Coastr!</Text>
+        <Image
+        style={styles.ImageBannerStyle}
+        source={require('../../assets/images/top.png')}
+        />
+        <Text style={styles.title}>
+          Hello
+        <Image
+        style={styles.ImageEmojiStyle}
+        source={require('../../assets/images/wave.png')}
+        />
+        </Text>
+        <Text style={styles.subtitle}>At a table?</Text>
         {/* BUTTON W QR CODE IMAGE*/}
         <TouchableOpacity
-            style={styles.button}
-            // onPress={() => onLoginPress()}
-          >
-            <Text style={styles.buttonTitle}>Log in</Text>
+        style={styles.button}
+        >
+        <Image
+        style={styles.ImageIconStyle}
+        source={require('../../assets/images/QR.png')}
+        />
           </TouchableOpacity>
       </View>
     );

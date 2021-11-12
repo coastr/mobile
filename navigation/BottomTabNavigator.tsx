@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
+import {Image} from 'react-native' ;
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -93,7 +94,12 @@ function HomeTabNavigator() {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerShown: true }}
+        options={{ 
+
+          headerTitle: () => (
+            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
+          )
+        }}
       />
     </HomeStack.Navigator>
   );
