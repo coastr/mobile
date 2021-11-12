@@ -42,15 +42,11 @@ export default StyleSheet.create({
   ImageEmojiStyle: {
     width: 100,
     height: 100,
-    marginLeft: 50
-  },
-  ImageBannerStyle: {
-    marginTop: 0,
-    height: imageHeight, 
-    width: imageWidth
+    paddingLeft: 50
   },
   title: {
     marginLeft: 40,
+    marginRight: 40,
     fontSize: 60,
     textAlign: "left",
     paddingBottom: 100,

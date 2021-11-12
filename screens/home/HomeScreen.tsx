@@ -52,12 +52,8 @@ class HomeScreen extends React.Component<Props, State> {
     console.log("HomeScreen this.props", this.props);
     return (
       <View style={styles.container}>
-        <Image
-        style={styles.ImageBannerStyle}
-        source={require('../../assets/images/top.png')}
-        />
         <Text style={styles.title}>
-          Hello
+          {'Hello\t  '}
         <Image
         style={styles.ImageEmojiStyle}
         source={require('../../assets/images/wave.png')}

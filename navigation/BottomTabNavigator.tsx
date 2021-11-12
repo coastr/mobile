@@ -95,7 +95,6 @@ function HomeTabNavigator() {
         name="HomeScreen"
         component={HomeScreen}
         options={{ 
-
           headerTitle: () => (
             <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
           )
@@ -113,12 +112,20 @@ function MenuTabNavigator() {
       <MenuStack.Screen
         name="MenuScreen"
         component={MenuScreen}
-        options={{ headerShown: true }}
+        options={{ 
+          headerTitle: () => (
+            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
+          )
+        }}
       />
       <MenuStack.Screen
         name="ItemScreen"
         component={ItemScreen}
-        options={{ headerShown: true }}
+        options={{ 
+          headerTitle: () => (
+            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
+          )
+        }}
       />
     </MenuStack.Navigator>
   );
@@ -133,12 +140,9 @@ function BillTabNavigator() {
         name="BillScreen"
         component={BillScreen}
         options={{ 
-          headerShown: true,
-          title: 'Pay Your Bill',
-          headerStyle: {
-            backgroundColor: '#2B5DE7',
-          },
-          headerTintColor: '#fff'
+          headerTitle: () => (
+            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
+          )
         }}
       />
     </BillStack.Navigator>
@@ -153,12 +157,20 @@ function AccountTabNavigator() {
       <AccountStack.Screen
         name="LoginScreen"
         component={LoginScreen}
-        options={{ headerShown: true }}
+        options={{ 
+          headerTitle: () => (
+            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
+          )
+        }}
       />
       <AccountStack.Screen
         name="RegistrationScreen"
         component={RegistrationScreen}
-        options={{ headerShown: true }}
+        options={{ 
+          headerTitle: () => (
+            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
+          )
+        }}
       />
     </AccountStack.Navigator>
   );
