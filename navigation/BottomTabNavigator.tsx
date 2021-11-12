@@ -8,7 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import {Image} from 'react-native' ;
+import Svg, {Path, Defs, Stop, LinearGradient} from 'react-native-svg';
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -20,6 +20,7 @@ import LoginScreen from "../screens/account/LoginScreen";
 import RegistrationScreen from "../screens/account/RegistrationScreen";
 
 import { BottomTabParamList, HomeParamList, MenuParamList, BillParamList, AccountParamList } from "../types";
+import Header from '../header/header';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -95,9 +96,7 @@ function HomeTabNavigator() {
         name="HomeScreen"
         component={HomeScreen}
         options={{ 
-          headerTitle: () => (
-            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
-          )
+          headerTitle: () => <Header />,
         }}
       />
     </HomeStack.Navigator>
@@ -113,18 +112,14 @@ function MenuTabNavigator() {
         name="MenuScreen"
         component={MenuScreen}
         options={{ 
-          headerTitle: () => (
-            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
-          )
+          headerTitle: () => <Header />,
         }}
       />
       <MenuStack.Screen
         name="ItemScreen"
         component={ItemScreen}
         options={{ 
-          headerTitle: () => (
-            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
-          )
+          headerTitle: () => <Header />,
         }}
       />
     </MenuStack.Navigator>
@@ -140,9 +135,7 @@ function BillTabNavigator() {
         name="BillScreen"
         component={BillScreen}
         options={{ 
-          headerTitle: () => (
-            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
-          )
+          headerTitle: () => <Header />,
         }}
       />
     </BillStack.Navigator>
@@ -158,18 +151,14 @@ function AccountTabNavigator() {
         name="LoginScreen"
         component={LoginScreen}
         options={{ 
-          headerTitle: () => (
-            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
-          )
+          headerTitle: () => <Header />,
         }}
       />
       <AccountStack.Screen
         name="RegistrationScreen"
         component={RegistrationScreen}
         options={{ 
-          headerTitle: () => (
-            <Image style={{ width: 450, height: 170 }} source={require("../assets/images/top.png")} />
-          )
+          headerTitle: () => <Header />,
         }}
       />
     </AccountStack.Navigator>
