@@ -17,6 +17,7 @@ export type BottomTabParamList = {
 
 export type HomeParamList = {
   HomeScreen: undefined;
+  QrScan: undefined;
 }
 
 export type MenuParamList = {
@@ -26,6 +27,7 @@ export type MenuParamList = {
 
 export type BillParamList = {
   BillScreen: undefined;
+  PayScreen: undefined
 };
 
 export type AccountParamList = {
