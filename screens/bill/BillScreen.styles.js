@@ -4,7 +4,10 @@ export default StyleSheet.create({
   container: {
     paddingTop: 80,
     flex: 1,
-    alignItems: "center",
+  },
+  billContainer: {
+    marginRight: 40,
+    marginLeft: 40,
   },
   title: {},
   logo: {
@@ -25,8 +28,19 @@ export default StyleSheet.create({
     marginRight: 30,
     paddingLeft: 16,
   },
+  billItem: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  billItemPrice: {
+    fontSize: 20,
+    textAlign: "right",
+  },
+  billItemQuant: {
+    fontSize: 15,
+  },
   button: {
-    backgroundColor: "#788eec",
+    backgroundColor: "#2B5DE7",
     marginLeft: 30,
     marginRight: 30,
     marginTop: 20,
@@ -48,6 +62,11 @@ export default StyleSheet.create({
   footerText: {
     fontSize: 16,
     color: "#2e2e2d",
+  },
+  subtitle: {
+    marginLeft: 40,
+    fontSize: 48,
+    fontWeight: "bold",
   },
   footerLink: {
     color: "#788eec",
