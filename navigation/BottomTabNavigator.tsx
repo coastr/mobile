@@ -16,11 +16,12 @@ import HomeScreen from "../screens/home/HomeScreen"
 import MenuScreen from "../screens/menu/MenuScreen";
 import ItemScreen from "../screens/menu/ItemScreen";
 import BillScreen from "../screens/bill/BillScreen";
+import PayScreen from "../screens/bill/PayScreen";
 import LoginScreen from "../screens/account/LoginScreen";
 import RegistrationScreen from "../screens/account/RegistrationScreen";
 
 import { BottomTabParamList, HomeParamList, MenuParamList, BillParamList, AccountParamList } from "../types";
-import Header from '../header/header';
+import Header from '../vectors/header';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -134,6 +135,13 @@ function BillTabNavigator() {
       <BillStack.Screen
         name="BillScreen"
         component={BillScreen}
+        options={{ 
+          headerTitle: () => <Header />,
+        }}
+      />
+      <BillStack.Screen 
+        name="PayScreen" 
+        component={PayScreen}
         options={{ 
           headerTitle: () => <Header />,
         }}

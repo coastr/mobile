@@ -73,4 +73,64 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center"
+  },
+  modalView: {
+    //flexDirection: 'row',
+    width: '100%',
+    height: '50%',
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 0,
+    paddingTop: 6,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  topBar: {
+    flexDirection: 'row',
+    width: '100%',
+  },
+  bar: {
+    flexGrow: 1,
+    justifyContent: "flex-start",
+    alignItems: 'center',
+    paddingLeft: 30,
+
+  },
+  buttonClose: {
+    flexDirection: 'column',
+    alignSelf: "flex-start",
+    paddingRight: 20,
+    paddingTop: 10
+  },
+  buttonPay: {
+    padding: 5,
+    width: '100%'
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
+  pay: {
+    alignContent:'center',
+    padding: 60,
+    fontSize: 30,
+    color: 'white'
+  }
 });

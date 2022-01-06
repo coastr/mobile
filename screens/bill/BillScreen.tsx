@@ -1,101 +1,94 @@
 import React, { useState } from "react";
-import { Image, TextInput, TouchableOpacity} from "react-native";
+import { Image, Modal, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import styles from "./BillScreen.styles";
-import {Text, View } from "../../components/Themed";
-import api from "../../api";
+import Bar from "../../vectors/bar";
+import Close from "../../vectors/close";
 
-export interface Props {
-  bill: Object;
-}
+/*
+ * See the following: https://stackoverflow.com/questions/63132548/
+ * react-navigation-5-error-binding-element-navigation-implicitly-has-an-any-ty
+ */
 
-interface State {
-  bill: Array<Object>;
-}
-class BillScreen extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+export default function BillScreen({ navigation }) {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [payModalVisible, setPayModalVisible] = useState(false);
 
-    this.state = {
-      bill: [],
-    };
-  }
+  const onFooterLinkPress = () => {
+    navigation.navigate("Bill");
+  };
 
-  // async componentDidMount() {
-  //   try {
-  //     const {data} = await api.restaurant.getBill(
-  //       "x"
-  //     );
-  //     this.setState({ bill: data });
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  const onRegisterPress = () => {
+    setPayModalVisible(!payModalVisible)
+    navigation.navigate('PayScreen')
+  };
 
-  render() {
-
-    const onRegisterPress = () => {};
-
-    return (
-      <View style={[styles.container, {justifyContent: "space-around"}]}>
-        
-        <View style={{ width: "100%"}}>
-          <Text style={styles.subtitle}>Daft Brewing</Text>
-        </View>
-
-        <View style={[styles.container, {justifyContent: "flex-start"}]}>
-          <View style={[styles.billContainer, { flexDirection: "row"}]}>
-            <View style={{flex: 1}}>
-              <Text style={styles.billItemQuant}>1</Text>
+  return (
+    <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={payModalVisible}
+        onRequestClose={() => {
+          setPayModalVisible(!payModalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.topBar}>
+              <View style={styles.bar}>
+                <Bar/>
+              </View>
+              <View style={styles.buttonClose}>
+                <Pressable
+                  onPress={() => setPayModalVisible(!payModalVisible)}
+                >
+                  <Close />
+                </Pressable>
+              </View>
             </View>
-            <View style={{flex: 10}}>
-              <Text style={styles.billItem}>Item 1</Text>
-            </View>
-            <View style={{flex: 2}}>
-              <Text style={styles.billItemPrice}>$6.90</Text>
-            </View>
-          </View>
-          <View style={[styles.billContainer, {borderBottomColor: 'black', borderBottomWidth: 1}]}/>
-          <View style={[styles.billContainer, { flexDirection: "row"}]}>
-            <View style={{flex: 1}}>
-              <Text style={styles.billItemQuant}>1</Text>
-            </View>
-            <View style={{flex: 10}}>
-              <Text style={styles.billItem}>Item 1</Text>
-            </View>
-            <View style={{flex: 5}}>
-              <Text style={styles.billItemPrice}>$1599.99</Text>
-            </View>
-          </View>
-          <View style={[styles.billContainer, {borderBottomColor: 'black', borderBottomWidth: 1}]}/>
-          <View style={[styles.billContainer, { flexDirection: "row"}]}>
-            <View style={{flex: 1}}>
-              <Text style={styles.billItemQuant}>2</Text>
-            </View>
-            <View style={{flex: 10}}>
-              <Text style={styles.billItem}>Item 1</Text>
-            </View>
-            <View style={{flex: 5}}>
-              <Text style={styles.billItemPrice}>$20.98</Text>
+            <View style={styles.buttonPay}>
+            <Pressable
+              style={[styles.button]}
+              onPress={() => onRegisterPress()}
+            >
+              <Text style={styles.textStyle}>Pay and Leave</Text>
+            </Pressable>
             </View>
           </View>
         </View>
-
-        <View style={{width: "100%", paddingBottom: 10}}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => onRegisterPress()}
-          >
-            <Text style={styles.buttonTitle}>Pay Now</Text>
-          </TouchableOpacity>
-        </View>
-
-      </View>
-    );
-  }
-
+      </Modal>
+      <KeyboardAwareScrollView
+        style={{ flex: 1, width: "100%" }}
+        keyboardShouldPersistTaps="always"
+      >
+        <Text>Bill</Text>
+        <Text>Item 1</Text>
+        <Text>Item 2</Text>
+        <Text>Item 3</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setPayModalVisible(!payModalVisible)}
+        >
+          <Text style={styles.buttonTitle}>Pay Now</Text>
+        </TouchableOpacity>
+      </KeyboardAwareScrollView>
+    </View>
+  );
 }
 
-export default BillScreen;
+// const BillStack = createStackNavigator();
+
+// function BillStackScreen() {
+//   return (
+//     <BillStack.Navigator>
+//       <BillStack.Screen name="Bill" component={BillScreen} />
+//     </BillStack.Navigator>
+//   );
+// }
