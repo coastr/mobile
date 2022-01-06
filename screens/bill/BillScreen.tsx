@@ -1,17 +1,31 @@
 import React, { useState } from "react";
 import { Image, Modal, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from "@react-navigation/stack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import styles from "./BillScreen.styles";
 import Bar from "../../vectors/bar";
 import Close from "../../vectors/close";
+import TipUnclicked from "../../vectors/tipUnclicked";
+import TipCustom from "../../vectors/tipCustom";
+import { BillParamList } from "../../types";
 
 /*
  * See the following: https://stackoverflow.com/questions/63132548/
  * react-navigation-5-error-binding-element-navigation-implicitly-has-an-any-ty
  */
+
+interface BillScreenNavigationProp
+  extends StackNavigationProp<BillParamList, "BillScreen"> {}
+export interface Props {
+  //Will have ites with prices, etc
+  Tip: Object;
+  navigation: BillScreenNavigationProp;
+}
 
 export default function BillScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -42,6 +56,9 @@ export default function BillScreen({ navigation }) {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.topBar}>
+              <View style={styles.text}>
+                <Text style={styles.header}>Tip</Text>
+              </View>
               <View style={styles.bar}>
                 <Bar/>
               </View>
@@ -52,6 +69,12 @@ export default function BillScreen({ navigation }) {
                   <Close />
                 </Pressable>
               </View>
+            </View>
+            <View style={styles.tipBar}>
+              <TipUnclicked tip={15} />
+              <TipUnclicked tip={18}/>
+              <TipUnclicked tip={20}/>
+              <TipCustom custom={'Custom'} tip={''} percent={''} />
             </View>
             <View style={styles.buttonPay}>
             <Pressable
@@ -82,13 +105,3 @@ export default function BillScreen({ navigation }) {
     </View>
   );
 }
-
-// const BillStack = createStackNavigator();
-
-// function BillStackScreen() {
-//   return (
-//     <BillStack.Navigator>
-//       <BillStack.Screen name="Bill" component={BillScreen} />
-//     </BillStack.Navigator>
-//   );
-// }

@@ -101,18 +101,28 @@ export default StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
   },
+  text: {
+    justifyContent: "flex-start",
+    alignItems: 'center',
+    paddingLeft: 30,
+    paddingTop: 20
+  },
   bar: {
     flexGrow: 1,
     justifyContent: "flex-start",
     alignItems: 'center',
-    paddingLeft: 30,
-
   },
   buttonClose: {
     flexDirection: 'column',
     alignSelf: "flex-start",
     paddingRight: 20,
-    paddingTop: 10
+    paddingTop: 20
+  },
+  tipBar: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    paddingHorizontal: 40,
   },
   buttonPay: {
     padding: 5,
@@ -132,5 +142,9 @@ export default StyleSheet.create({
     padding: 60,
     fontSize: 30,
     color: 'white'
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 22
   }
 });
