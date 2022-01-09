@@ -22,6 +22,7 @@ import RegistrationScreen from "../screens/account/RegistrationScreen";
 
 import { BottomTabParamList, HomeParamList, MenuParamList, BillParamList, AccountParamList } from "../types";
 import Header from '../vectors/header';
+import MyAccount from "../screens/account/MyAccount";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -155,6 +156,13 @@ const AccountStack = createStackNavigator<AccountParamList>();
 function AccountTabNavigator() {
   return (
     <AccountStack.Navigator>
+      <AccountStack.Screen
+        name="MyAccount"
+        component={MyAccount}
+        options={{ 
+          headerTitle: () => <Header />,
+        }}
+      />
       <AccountStack.Screen
         name="LoginScreen"
         component={LoginScreen}

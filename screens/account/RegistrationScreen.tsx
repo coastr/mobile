@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import styles from "./RegistrationScreen.styles";
+import styles from "./Account.styles";
 
 export default function RegistrationScreen({ navigation }) {
   const [fullName, setFullName] = useState("");

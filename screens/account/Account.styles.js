@@ -1,11 +1,15 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const dimensions = Dimensions.get('window');
+const imageHeight = Math.round(dimensions.width * 55 / 138);
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    textAlign: "left",
+    justifyContent: "center",
+    paddingTop: imageHeight / 3
   },
-  title: {},
   logo: {
     flex: 1,
     height: 120,
@@ -52,5 +56,18 @@ export default StyleSheet.create({
     color: "#788eec",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  title: {
+    marginLeft: 40,
+    marginRight: 40,
+    fontSize: 60,
+    textAlign: "left",
+    paddingBottom: 100,
+    fontWeight: "bold",
+  },
+  subtitle: {
+    marginLeft: 40,
+    fontSize: 48,
+    fontWeight: "bold",
   },
 });

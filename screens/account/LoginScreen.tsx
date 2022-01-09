@@ -1,10 +1,21 @@
 import React, { useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, TextInput, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as GoogleSignIn from "expo-google-sign-in";
-import styles from "./LoginScreen.styles.js";
+import styles from "./Account.styles.js";
+import { Header } from "react-native/Libraries/NewAppScreen";
 
-export default class LoginScreen extends React.Component {
+import { Text, View } from "../../components/Themed";
+
+interface Props {
+  navigation: any
+}
+
+interface State {
+  menu: Array<Object>;
+}
+
+export default class LoginScreen extends React.Component<Props, State> {
   // console.log("navigation", navigation);
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
@@ -66,10 +77,7 @@ export default class LoginScreen extends React.Component {
           style={{ flex: 1, width: "100%" }}
           keyboardShouldPersistTaps="always"
         >
-          {/* <Image
-          style={styles.logo}
-          source={require("../../../assets/icon.png")}
-        /> */}
+        <Text style={styles.title}>At a table?</Text>
           <TextInput
             style={styles.input}
             placeholder="E-mail"

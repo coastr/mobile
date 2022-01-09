@@ -31,6 +31,7 @@ export type BillParamList = {
 };
 
 export type AccountParamList = {
+  MyAccount: undefined;
   LoginScreen: undefined;
   RegistrationScreen: undefined;
 };
