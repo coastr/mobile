@@ -32,6 +32,11 @@ export type BillParamList = {
 
 export type AccountParamList = {
   MyAccount: undefined;
+  Settings: undefined;
+  Favourites: undefined;
+  OrderHistory: undefined;
+  PaymentOptions: undefined;
+  GetHelp: undefined;
   LoginScreen: undefined;
   RegistrationScreen: undefined;
 };

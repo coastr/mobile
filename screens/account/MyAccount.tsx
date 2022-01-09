@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { Image, TextInput, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import * as GoogleSignIn from "expo-google-sign-in";
 import styles from "./Account.styles.js";
-import { Header } from "react-native/Libraries/NewAppScreen";
 
 import { Text, View } from "../../components/Themed";
-import { UserInterfaceIdiom } from "expo-constants";
 
 import Settings from "../../vectors/settings"
 import Favouites from "../../vectors/favourites"
@@ -25,7 +21,7 @@ interface State {
   user: Account;
 }
 
-class Account {
+export class Account {
     first: String;
     last: String;
     phone: Object;
@@ -99,14 +95,14 @@ export default class MyAccount extends React.Component<Props, State> {
           keyboardShouldPersistTaps="always"
         >
         <Text style={styles.title}>Hi, { this.state.user.first }</Text>
-        <Settings></Settings>
-        <Favouites></Favouites>
-        <OrderHistory></OrderHistory>
-        <PaymentOptions></PaymentOptions>
-        <GetHelp></GetHelp>
-        <SignIn></SignIn>
-        <CreateAccount></CreateAccount>
-        <SignOut></SignOut>
+        <Settings onPress={() => this.props.navigation.navigate('Settings')} ></Settings>
+        <Favouites onPress={() => this.props.navigation.navigate('Favourites')} ></Favouites>
+        <OrderHistory onPress={() => this.props.navigation.navigate('OrderHistory')} ></OrderHistory>
+        <PaymentOptions onPress={() => this.props.navigation.navigate('PaymentOptions')} ></PaymentOptions>
+        <GetHelp onPress={() => this.props.navigation.navigate('GetHelp')} ></GetHelp>
+        <SignIn onPress={() => this.props.navigation.navigate('LoginScreen')}></SignIn>
+        <CreateAccount onPress={() => this.props.navigation.navigate('RegistrationScreen')} ></CreateAccount>
+        <SignOut ></SignOut>
         </KeyboardAwareScrollView>
       </View>
     );

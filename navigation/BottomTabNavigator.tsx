@@ -23,6 +23,12 @@ import RegistrationScreen from "../screens/account/RegistrationScreen";
 import { BottomTabParamList, HomeParamList, MenuParamList, BillParamList, AccountParamList } from "../types";
 import Header from '../vectors/header';
 import MyAccount from "../screens/account/MyAccount";
+import Settings from "../screens/account/Settings";
+import Favourites from "../screens/account/Favourites";
+import OrderHistory from "../screens/account/OrderHistory";
+import PaymentOptions from "../screens/account/PaymentOptions";
+import GetHelp from "../screens/account/GetHelp";
+
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -159,6 +165,41 @@ function AccountTabNavigator() {
       <AccountStack.Screen
         name="MyAccount"
         component={MyAccount}
+        options={{ 
+          headerTitle: () => <Header />,
+        }}
+      />
+      <AccountStack.Screen
+        name="Settings"
+        component={Settings}
+        options={{ 
+          headerTitle: () => <Header />,
+        }}
+      />
+      <AccountStack.Screen
+        name="Favourites"
+        component={Favourites}
+        options={{ 
+          headerTitle: () => <Header />,
+        }}
+      />
+      <AccountStack.Screen
+        name="OrderHistory"
+        component={OrderHistory}
+        options={{ 
+          headerTitle: () => <Header />,
+        }}
+      />
+      <AccountStack.Screen
+        name="PaymentOptions"
+        component={PaymentOptions}
+        options={{ 
+          headerTitle: () => <Header />,
+        }}
+      />
+      <AccountStack.Screen
+        name="GetHelp"
+        component={GetHelp}
         options={{ 
           headerTitle: () => <Header />,
         }}
