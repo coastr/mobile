@@ -8,6 +8,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import styles from "./BillScreen.styles";
+<<<<<<< HEAD
 import Bar from "../../vectors/bar";
 import Close from "../../vectors/close";
 import TipUnclicked from "../../vectors/tipUnclicked";
@@ -33,16 +34,59 @@ export default function BillScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [payModalVisible, setPayModalVisible] = useState(false);
+=======
+import BillList from "../../components/bill/BillList";
+import api from "../../api";
+import { MenuParamList } from "../../types";
 
-  const onFooterLinkPress = () => {
-    navigation.navigate("Bill");
-  };
+import {StackNavigationProp} from "@react-navigation/stack";
+import { baseProps } from "react-native-gesture-handler/lib/typescript/handlers/gestureHandlers";
+interface BillScreenNavigationProp
+  extends StackNavigationProp<MenuParamList, "MenuScreen"> {}
 
-  const onRegisterPress = () => {
-    setPayModalVisible(!payModalVisible)
-    navigation.navigate('PayScreen')
-  };
+export interface Props {
+  bill: Object;
+  navigation: BillScreenNavigationProp;
+}
+>>>>>>> 179abd0 (api result in frontend)
 
+interface State {
+  bill: Array<Object>;
+}
+
+class BillScreen extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      bill: [],
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const { data } = await api.order.getSquareOrder(
+        "DT45TjUz4AbhFzmmIPjdAuJoktaZY"
+      );
+      console.log(data);
+      this.setState({ bill: data.order});
+      
+    
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  render() {
+    //console.log("BillScreen this.props", this.props);
+    return (
+      <View style={styles.container}>
+        <BillList bill={this.state.bill} navigation={this.props.navigation}/>
+      </View>  
+    );
+  }
+
+<<<<<<< HEAD
   return (
     <View style={styles.container}>
       <Modal
@@ -105,3 +149,8 @@ export default function BillScreen({ navigation }) {
     </View>
   );
 }
+=======
+}
+
+export default BillScreen;
+>>>>>>> 179abd0 (api result in frontend)
