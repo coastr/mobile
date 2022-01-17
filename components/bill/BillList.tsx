@@ -1,13 +1,9 @@
 import * as React from "react";
 import { ScrollView, FlatList, TouchableNativeFeedback } from "react-native";
-import styles from "./MenuList.styles.js";
+import styles from "./BillList.styles.js";
 
-import MenuCategory from "./MenuCategory";
-import MenuItemButton from "./MenuItemButton";
-import RestaurantInfo from "./RestaurantInfo";
-import Collapsible from "react-native-collapsible";
-
-import { Text, View } from "../../components/Themed";
+import BillCategory from "./BillCategory";
+import Info from "./BillInfo";
 
 interface Props {
   bill: Array<Object>;
@@ -21,11 +17,10 @@ class BillList extends React.Component<Props> {
         data={this.props.bill}
         keyExtractor={(item) => item.name}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={RestaurantInfo}
+        ListHeaderComponent={Info}
         renderItem={({ item }) => {
-          console.log("item", item);
           return (
-            <MenuCategory category={item} navigation={this.props.navigation} />
+            <BillCategory category={item} navigation={this.props.navigation} />
           );
         }}
       />
@@ -33,4 +28,4 @@ class BillList extends React.Component<Props> {
   }
 }
 
-export default MenuList;
+export default BillList;
