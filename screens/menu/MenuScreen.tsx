@@ -52,7 +52,6 @@ class MenuScreen extends React.Component<Props, State> {
   };
 
   render() {
-    console.log(this.props.restaurant);
     return (
       <View style={styles.container}>
         <MenuList
@@ -62,7 +61,7 @@ class MenuScreen extends React.Component<Props, State> {
         <ViewOrderButton onPress={this.handleViewOrderPress} />
         <BottomSheet ref={this.bottomSheetRef}>
           <ViewOrderSheet
-            order={this.props.order.activeOrder}
+            order={this.props.order?.activeOrder}
             navigation={this.props.navigation}
           />
         </BottomSheet>
